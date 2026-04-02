@@ -22,8 +22,8 @@ with col1:
  st.subheader("Sol Energy Forecast")
  image = Image.open('Energy_forecast.png')
  st.image(image, width=190)
- st.write("En el siguiente enlace usaremos una de las aplicaciones de Inteligencia Artificial") 
- url = "https://energy-forecastmed.streamlit.app/"
+ st.write("En el siguiente enlace usaremos una de las aplicaciones de Inteligencia Artificial. LSTM para predicciones de energía") 
+ url = "https://solenergyforecast.streamlit.app/"
  st.write(f"Sol Energy Forecast: [Enlace]({url})")
  
  #2
