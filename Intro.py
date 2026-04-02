@@ -1,10 +1,10 @@
 import streamlit as st
 from PIL import Image
 st.title("Aplicaciones de Inteligencia Artificial.")
-st.subtitle("En los siguientes enlaces usaremos aplicaciones de inteligencia artificial")
+
 
 with st.sidebar:
-  st.subheader("Aplicaciones con Inteligencia Artificial.")
+  st.subheader("Inteligencia Artificial.")
   parrafo = (
     "La inteligencia artificial permite mejorar la toma de decisiones con el uso de datos, "
     "automatizar tareas rutinarias y proporcionar análisis avanzados en tiempo real, lo que "
