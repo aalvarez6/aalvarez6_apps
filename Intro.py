@@ -28,7 +28,7 @@ with col1:
  
  #2
  st.subheader("🌸 Clasificador de Flores")
- image = Image.open('OIG5.jpg')
+ image = Image.open('photo_9_2026-03-17_16-25-34.jpg')
  st.image(image, width=200)
  st.write("En el siguiente enlace veremos cómo puedes usar tu modelo entrenado para clasificar flores") 
  url = "https://tlflores.streamlit.app/"
