@@ -6,10 +6,10 @@ st.set_page_config(layout="wide")
 # ==============================================================
 # IMAGES — place these files in the same folder as app.py
 # --------------------------------------------------------------
-# Energy Forecast.webp   → Sol Energy Forecast
-# BloomVision.png        → Flower Classifier
-# Polygot.jpg            → Translator
-# VisionX.png         → Image Analysis
+# img_Energy Forecast.webp   → Sol Energy Forecast
+# img_BloomVision.png        → Flower Classifier
+# img_Polygot.jpg        → Translator
+# img_VisionX.png        → Image Analysis
 # img_wordcloud.jpg      → Wordcloud
 # img_textgen.jpg        → LSTM Text Generator
 # img_yogi.jpg           → YOGI Image Recognition
@@ -278,12 +278,12 @@ loop();
 APPS = [
     # ── column 1 ──
     {"name":"Sol Energy Forecast",    "emoji":"⚡", "desc":"LSTM solar energy predictions in real time.",              "url":"https://solenergyforecast.streamlit.app/",         "img":"img_solar.png"},
-    {"name":"BloomVision",      "emoji":"🌸", "desc":"Classify flower species with your trained model.",        "url":"https://tlflores.streamlit.app/",                  "img":"img_flowers.jpg"},
-    {"name":"Polyglot AI",             "emoji":"🌐", "desc":"Smart AI translation across multiple languages.",         "url":"https://traductore.streamlit.app/",                "img":"img_translator.jpg"},
-    {"name":"VisionX",         "emoji":"🏞️", "desc":"Understand and describe any image with AI vision.",      "url":"https://visionn.streamlit.app/",                   "img":"img_vision.jpg"},
+    {"name":"BloomVision",            "emoji":"🌸", "desc":"Classify flower species with your trained model.",        "url":"https://tlflores.streamlit.app/",                  "img":"img_flowers.jpg"},
+    {"name":"Polyglot AI",            "emoji":"🌐", "desc":"Smart AI translation across multiple languages.",         "url":"https://traductore.streamlit.app/",                "img":"img_translator.jpg"},
+    {"name":"VisionX",                "emoji":"🏞️", "desc":"Understand and describe any image with AI vision.",      "url":"https://visionn.streamlit.app/",                   "img":"img_vision.jpg"},
     {"name":"Wordcloud",              "emoji":"☁️", "desc":"Visualize most frequent words in any text.",             "url":"https://wordcloud-1.streamlit.app/",               "img":"img_wordcloud.jpg"},
     # ── column 2 ──
-    {"name":"NeuroText",    "emoji":"📝", "desc":"Generate coherent text with an LSTM network.",           "url":"https://textgeneratoor.streamlit.app/",            "img":"img_textgen.jpg"},
+    {"name":"NeuroText",              "emoji":"📝", "desc":"Generate coherent text with an LSTM network.",           "url":"https://textgeneratoor.streamlit.app/",            "img":"img_textgen.jpg"},
     {"name":"YOGI",                   "emoji":"🐶", "desc":"Image recognition using your Teachable Machine model.",  "url":"https://teachablem-yogi.streamlit.app/",           "img":"img_yogi.jpg"},
     {"name":"Sentiment Analysis",     "emoji":"❤️", "desc":"Detect positive, negative or neutral tone in text.",     "url":"https://sentimientos-1.streamlit.app/",            "img":"img_sentiment.png"},
     {"name":"Basic Neural Network",   "emoji":"🧠", "desc":"RNN app for time series sequence prediction.",           "url":"https://rnnbasica.streamlit.app/",                 "img":"img_rnn.jpg"},
