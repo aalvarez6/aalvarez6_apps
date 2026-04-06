@@ -199,3 +199,4 @@ for i, app in enumerate(apps):
             <a href="{app['url']}" target="_blank">Open →</a>
         </div>
         """, unsafe_allow_html=True)
+      
