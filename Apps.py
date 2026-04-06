@@ -27,10 +27,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("Artificial Intelligence Applications.")
-st.subheader ("Explore AI tools powered by machine learning")
+st.write ("Explore AI tools powered by machine learning")
 
 # Logo
-st.components.v1.html("""
+with st.components.v1.html("""
 <style>
   #canvas-wrap { display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 0; }
   canvas { cursor:crosshair; border-radius:16px; }
@@ -120,6 +120,7 @@ ctx.fillStyle = "#22d3ee";
 ctx.fill();
 </script>
 """, height=320)
+
 with st.sidebar:
   st.subheader("Artificial Intelligence.")
   parrafo = (
