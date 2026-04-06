@@ -83,8 +83,8 @@ st.components.v1.html("""
   </div>
 
   <div class="desc">
-    Optimización energética, automatización y análisis inteligente 
-    con inteligencia artificial aplicada a sistemas reales.
+    AI-powered automation, energy optimization,  OCR, RAG's, and intelligent systems 
+    designed to solve real-world problems efficiently.
   </div>
 </div>
 
@@ -94,14 +94,13 @@ const ctx = canvas.getContext("2d");
 
 const centerX = canvas.width / 2;
 const centerY = canvas.height / 2;
-const radius = 45;
 
 let t = 0;
 let mouseX = centerX;
 let mouseY = centerY;
 let hover = false;
 
-// Interacción mouse
+// Mouse interaction
 canvas.addEventListener("mousemove", (e) => {
   const rect = canvas.getBoundingClientRect();
   mouseX = e.clientX - rect.left;
@@ -115,65 +114,73 @@ function draw() {
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  const floatY = Math.sin(t) * 4;
+  const floatY = Math.sin(t) * 3;
+  const glow = hover ? 18 : 8 + Math.sin(t * 2) * 6;
 
-  // Intensidad cambia con hover
-  const glow = hover ? 20 : 10 + Math.sin(t * 2) * 8;
-
-  // Dirección del visor (sigue el mouse)
   const dx = (mouseX - centerX) * 0.05;
   const dy = (mouseY - centerY) * 0.05;
 
-  // 👻 cuerpo fantasma
-  ctx.beginPath();
-  ctx.moveTo(centerX - radius, centerY + floatY);
-
-  ctx.arc(centerX, centerY - 5 + floatY, radius, Math.PI, 0);
-
-  const waves = 4;
-  const waveHeight = 10;
-
-  for (let i = 0; i <= waves; i++) {
-    let x = centerX + radius - (i * (radius*2) / waves);
-    let y = centerY + radius + floatY - (i % 2 === 0 ? 0 : waveHeight);
-    ctx.lineTo(x, y);
-  }
-
-  ctx.closePath();
-
-  // Gradiente violeta
-  const grad = ctx.createLinearGradient(0, centerY - radius, 0, centerY + radius);
-  grad.addColorStop(0, "#c084fc");
-  grad.addColorStop(1, "#7c3aed");
-
-  ctx.fillStyle = grad;
-
+  // 🐜 BODY (3 segments)
   ctx.shadowColor = "#a78bfa";
   ctx.shadowBlur = glow;
 
+  // abdomen
+  ctx.beginPath();
+  ctx.arc(centerX, centerY + 20 + floatY, 18, 0, Math.PI * 2);
+  ctx.fillStyle = "#7c3aed";
   ctx.fill();
+
+  // thorax
+  ctx.beginPath();
+  ctx.arc(centerX, centerY + floatY, 14, 0, Math.PI * 2);
+  ctx.fill();
+
+  // head
+  ctx.beginPath();
+  ctx.arc(centerX, centerY - 18 + floatY, 12, 0, Math.PI * 2);
+  ctx.fill();
+
   ctx.shadowBlur = 0;
 
-  // 🧠 visor IA (sigue el mouse)
+  // 🧠 visor (AI identity, follows mouse)
   ctx.beginPath();
   ctx.roundRect(
-    centerX - 18 + dx,
-    centerY - 8 + floatY + dy,
-    36,
-    16,
-    6
+    centerX - 10 + dx,
+    centerY - 22 + floatY + dy,
+    20,
+    10,
+    4
   );
   ctx.fillStyle = "#ede9fe";
   ctx.fill();
 
-  // ✨ núcleo IA pulsante
-  const pulse = 4 + Math.sin(t * 3) * 2;
+  // legs (animated)
+  ctx.strokeStyle = "#a78bfa";
+  ctx.lineWidth = 2;
+
+  for (let i = -1; i <= 1; i++) {
+    ctx.beginPath();
+    ctx.moveTo(centerX + i*10, centerY + floatY);
+    ctx.lineTo(centerX + i*18, centerY + 10 + floatY + Math.sin(t+i)*4);
+    ctx.stroke();
+  }
+
+  // antennae
   ctx.beginPath();
-  ctx.arc(centerX, centerY + 25 + floatY, pulse, 0, Math.PI * 2);
+  ctx.moveTo(centerX - 5, centerY - 28 + floatY);
+  ctx.lineTo(centerX - 12, centerY - 38 + floatY);
+  ctx.moveTo(centerX + 5, centerY - 28 + floatY);
+  ctx.lineTo(centerX + 12, centerY - 38 + floatY);
+  ctx.stroke();
+
+  // core pulse
+  const pulse = 3 + Math.sin(t * 3) * 1.5;
+  ctx.beginPath();
+  ctx.arc(centerX, centerY + 5 + floatY, pulse, 0, Math.PI * 2);
   ctx.fillStyle = "#c084fc";
   ctx.fill();
 
-  // Hover scale efecto
+  // hover scale
   canvas.style.transform = hover ? "scale(1.08)" : "scale(1)";
 
   t += 0.05;
