@@ -137,10 +137,10 @@ function draw() {
 
 // Iniciar animación
 draw();
-"""
+""")
 
                       
-
+#Sidebar
 with st.sidebar:
   st.subheader("Artificial Intelligence.")
   parrafo = (
