@@ -3,7 +3,7 @@ from PIL import Image
 
 st.set_page_config(layout="wide")
 
-# -------------------- STYLE --------------------
+# -------------------- GLOBAL STYLE --------------------
 st.markdown("""
 <style>
 
@@ -13,73 +13,56 @@ st.markdown("""
   color: white;
 }
 
-/* Estrellas */
-.stApp::before {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  background-image: radial-gradient(white 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.08;
-  animation: moveStars 80s linear infinite;
-  z-index: -1;
-}
-
-@keyframes moveStars {
-  from { transform: translate(0,0); }
-  to { transform: translate(200px,300px); }
-}
-
 /* Layout */
 .block-container {
-  max-width: 1000px;
+  max-width: 1200px;
 }
 
 /* Cards */
 .card {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 14px;
-  padding: 10px;
-  transition: 0.25s;
+  border-radius: 18px;
+  padding: 16px;
+  transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px);
   border: 1px solid #7c3aed;
+  box-shadow: 0 12px 40px rgba(124,58,237,0.35);
 }
 
-/* Imagen */
+/* Imagen uniforme */
 .card img {
   width: 100%;
-  height: 130px;
+  height: 180px;
   object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 6px;
+  border-radius: 12px;
+  margin-bottom: 10px;
 }
 
 /* Texto */
 .card-title {
-  font-size:15px;
+  font-size:18px;
   font-weight:600;
 }
 
 .card-desc {
-  font-size:12px;
+  font-size:14px;
   color:#a1a1aa;
-  margin:4px 0;
+  margin:6px 0;
 }
 
 .card a {
   color:#c084fc;
-  font-size:12px;
   text-decoration:none;
+  font-size:14px;
 }
 
 /* Header */
 .title {
-  font-size:52px;
+  font-size:60px;
   font-weight:900;
   text-align:center;
   background: linear-gradient(90deg, #c084fc, #7c3aed);
@@ -90,82 +73,107 @@ st.markdown("""
 .subtitle {
   text-align:center;
   color:#a1a1aa;
-  margin-bottom:20px;
+  margin-bottom:30px;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-# -------------------- SPACE HERO --------------------
+# -------------------- SPACE + STARS --------------------
 st.components.v1.html("""
-<canvas id="spaceCanvas"></canvas>
+<style>
+canvas {
+  display:block;
+  margin:auto;
+}
+</style>
+
+<canvas id="space" width="1200" height="220"></canvas>
 
 <script>
-const canvas = document.getElementById("spaceCanvas");
+const canvas = document.getElementById("space");
 const ctx = canvas.getContext("2d");
-
-canvas.width = 1000;
-canvas.height = 180;
 
 let t = 0;
 
-const earth = {x: 80, y: 130, r: 25};
-const moon = {x: 920, y: 60, r: 12};
+// estrellas
+let stars = [];
+for(let i=0;i<120;i++){
+  stars.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    r: Math.random()*1.5
+  });
+}
 
-function drawPlanet(p, color){
+// planetas
+const earth = {x: 100, y: 140, r: 30};
+const moon = {x: canvas.width - 100, y: 70, r: 15};
+
+function drawStars(){
+  ctx.fillStyle="white";
+  stars.forEach(s=>{
+    ctx.globalAlpha = Math.random();
+    ctx.fillRect(s.x, s.y, s.r, s.r);
+  });
+  ctx.globalAlpha = 1;
+}
+
+function drawPlanet(p,color){
   ctx.beginPath();
-  ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-  ctx.fillStyle = color;
+  ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+  ctx.fillStyle=color;
   ctx.fill();
 }
 
-function drawRocket(x, y){
+function drawRocket(x,y){
   ctx.save();
-  ctx.translate(x, y);
+  ctx.translate(x,y);
 
-  ctx.fillStyle = "#c084fc";
+  // cuerpo
+  ctx.fillStyle="#c084fc";
   ctx.beginPath();
-  ctx.moveTo(0, -12);
-  ctx.lineTo(8, 10);
-  ctx.lineTo(-8, 10);
+  ctx.moveTo(0,-12);
+  ctx.lineTo(7,10);
+  ctx.lineTo(-7,10);
   ctx.closePath();
   ctx.fill();
 
-  ctx.beginPath();
-  ctx.arc(0, -2, 3, 0, Math.PI*2);
-  ctx.fillStyle = "#1e1b4b";
-  ctx.fill();
-
+  // fuego
   ctx.beginPath();
   ctx.moveTo(-4,10);
   ctx.lineTo(4,10);
-  ctx.lineTo(0, 20 + Math.sin(t*6)*5);
-  ctx.fillStyle = "#f97316";
+  ctx.lineTo(0,18 + Math.sin(t*6)*4);
+  ctx.fillStyle="#f97316";
   ctx.fill();
 
   ctx.restore();
 }
 
 function animate(){
-  ctx.fillStyle = "#020617";
+
+  ctx.fillStyle="#020617";
   ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  drawStars();
 
   drawPlanet(earth,"#2563eb");
   drawPlanet(moon,"#a1a1aa");
 
   let progress = (Math.sin(t)+1)/2;
-  let x = earth.x + (moon.x - earth.x) * progress;
-  let y = earth.y - 80 * Math.sin(progress * Math.PI);
+
+  let x = earth.x + (moon.x-earth.x)*progress;
+  let y = earth.y - 90*Math.sin(progress*Math.PI);
 
   drawRocket(x,y);
 
-  t += 0.03;
+  t += 0.02;
   requestAnimationFrame(animate);
 }
 
 animate();
 </script>
-""", height=200)
+""", height=220)
 
 # -------------------- HEADER --------------------
 st.markdown('<div class="title">Artemis Hub</div>', unsafe_allow_html=True)
@@ -190,10 +198,10 @@ apps = [
 ]
 
 # -------------------- GRID --------------------
-cols = st.columns(4)
+cols = st.columns(3)
 
 for i, app in enumerate(apps):
-    col = cols[i % 4]
+    col = cols[i % 3]
 
     with col:
         try:
