@@ -42,7 +42,7 @@ st.components.v1.html("""
 
 /* Título estilo OpenClaw */
 .title {
-  font-size:56px;
+  font-size:60px;
   font-weight:800;
   margin:10px 0;
   background: linear-gradient(90deg, #c084fc, #7c3aed);
@@ -73,14 +73,14 @@ canvas {
 <div class="hero">
   <canvas id="c" width="220" height="120"></canvas>
 
-  <div class="title">AleAI</div>
+  <div class="title">Artemis</div>
 
   <div class="tagline">
-    BUILDING INTELLIGENCE SYSTEMS
+    Open box with AI applications
   </div>
 
   <div class="desc">
-    AI applications for automation, forecasting and intelligent decision-making.
+    AI applications for automation, forecasting, and intelligent decision-making.
   </div>
 </div>
 
@@ -89,9 +89,9 @@ const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
 
 // Hormigas minimalistas (más estilo OpenClaw = simple)
-let ants = [];
+let gosh = [];
 for (let i = 0; i < 8; i++) {
-  ants.push({
+  gosh.push({
     x: Math.random() * canvas.width,
     y: 60 + Math.random()*20,
     vx: (Math.random() - 0.5) * 1.2
