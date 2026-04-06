@@ -81,14 +81,14 @@ with col1:
 
 with col2:
 
-  st.subheader("📝 LSTM Text Generator   ")
+  st.subheader("📝 Text Generator   ")
   image = Image.open('OIG5.jpg')
   st.image(image, width=200)
   st.write("Generate coherent text using an LSTM neural network model.")
   url = "https://textgeneratoor.streamlit.app/"
   st.write(f"LSTM Text Generator: [Link]({url})")
 
-  st.subheader("🐶 YOGI Image Recognition")
+  st.subheader("🐶 YOGI    ")
   image = Image.open('OIG5.jpg')
   st.image(image, width=200)
   st.write("Use your Teachable Machine model for image recognition.")
@@ -102,7 +102,7 @@ with col2:
   url = "https://sentimientos-1.streamlit.app/"
   st.write(f"Sentiment Analysis: [Link]({url})")
 
-  st.subheader("🧠 Basic Neural Network  ")
+  st.subheader("🧠 Neural Network  ")
   image = Image.open('OIG8.jpg')
   st.image(image, width=200)
   st.write("RNN application for time series sequence prediction.")
