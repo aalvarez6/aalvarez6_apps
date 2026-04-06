@@ -278,16 +278,16 @@ loop();
 APPS = [
     # ── column 1 ──
     {"name":"Sol Energy Forecast",    "emoji":"⚡", "desc":"LSTM solar energy predictions in real time.",              "url":"https://solenergyforecast.streamlit.app/",         "img":"img_solar.png"},
-    {"name":"Flower Classifier",      "emoji":"🌸", "desc":"Classify flower species with your trained model.",        "url":"https://tlflores.streamlit.app/",                  "img":"img_flowers.jpg"},
-    {"name":"Translator",             "emoji":"🌐", "desc":"Smart AI translation across multiple languages.",         "url":"https://traductore.streamlit.app/",                "img":"img_translator.jpg"},
-    {"name":"Image Analysis",         "emoji":"🏞️", "desc":"Understand and describe any image with AI vision.",      "url":"https://visionn.streamlit.app/",                   "img":"img_vision.jpg"},
+    {"name":"BloomVision",      "emoji":"🌸", "desc":"Classify flower species with your trained model.",        "url":"https://tlflores.streamlit.app/",                  "img":"img_flowers.jpg"},
+    {"name":"Polyglot AI",             "emoji":"🌐", "desc":"Smart AI translation across multiple languages.",         "url":"https://traductore.streamlit.app/",                "img":"img_translator.jpg"},
+    {"name":"VisionX",         "emoji":"🏞️", "desc":"Understand and describe any image with AI vision.",      "url":"https://visionn.streamlit.app/",                   "img":"img_vision.jpg"},
     {"name":"Wordcloud",              "emoji":"☁️", "desc":"Visualize most frequent words in any text.",             "url":"https://wordcloud-1.streamlit.app/",               "img":"img_wordcloud.jpg"},
     # ── column 2 ──
-    {"name":"LSTM Text Generator",    "emoji":"📝", "desc":"Generate coherent text with an LSTM network.",           "url":"https://textgeneratoor.streamlit.app/",            "img":"img_textgen.jpg"},
+    {"name":"NeuroText",    "emoji":"📝", "desc":"Generate coherent text with an LSTM network.",           "url":"https://textgeneratoor.streamlit.app/",            "img":"img_textgen.jpg"},
     {"name":"YOGI",                   "emoji":"🐶", "desc":"Image recognition using your Teachable Machine model.",  "url":"https://teachablem-yogi.streamlit.app/",           "img":"img_yogi.jpg"},
     {"name":"Sentiment Analysis",     "emoji":"❤️", "desc":"Detect positive, negative or neutral tone in text.",     "url":"https://sentimientos-1.streamlit.app/",            "img":"img_sentiment.png"},
     {"name":"Basic Neural Network",   "emoji":"🧠", "desc":"RNN app for time series sequence prediction.",           "url":"https://rnnbasica.streamlit.app/",                 "img":"img_rnn.jpg"},
-    {"name":"OCR to Audio",           "emoji":"🔡", "desc":"Extract text from images via OCR and convert to audio.", "url":"https://ocr-audioo.streamlit.app/",                "img":"img_ocr_audio.jpg"},
+    {"name":"Voice OCR ",           "emoji":"🔡", "desc":"Extract text from images via OCR and convert to audio.", "url":"https://ocr-audioo.streamlit.app/",                "img":"img_ocr_audio.jpg"},
     # ── column 3 ──
     {"name":"Advanced OCR",           "emoji":"📑", "desc":"Optical character recognition on complex documents.",    "url":"https://opticalcr.streamlit.app/",                 "img":"img_ocr_doc.png"},
     {"name":"Handwritten Digits",     "emoji":"✍️", "desc":"Draw a digit — the neural network reads it instantly.",  "url":"https://hzwi7bwfepy6scpu7pradh.streamlit.app/",   "img":"img_digits.jpg"},
