@@ -27,8 +27,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("Artificial Intelligence Applications.")
-st.write ("Explore AI tools powered by machine learning")
 
 # Logo
 st.components.v1.html("""
@@ -76,7 +74,7 @@ st.components.v1.html("""
 <div class="hero">
   <canvas id="c" width="160" height="160"></canvas>
 
-  <h1>AleAI</h1>
+  <h1>ArtiBox</h1>
 
   <div class="tagline">
     THE AI THAT ACTUALLY DOES THINGS.
