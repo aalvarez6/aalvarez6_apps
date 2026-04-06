@@ -16,7 +16,7 @@ APPS = [
     },
     {
         "name": "BloomVision",
-        "desc": "Classify flowers using your trained model.       ",
+        "desc": "Classify flowers using your trained model.                         ",
         "img": "img_flowers.jpg",
         "url": "https://tlflores.streamlit.app/",
         "emoji": "🌸"
