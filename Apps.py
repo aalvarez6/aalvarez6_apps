@@ -23,6 +23,7 @@ st.markdown("""
     margin-bottom: 4px !important;
     font-size: 0.82rem !important;
   }
+  
 </style>
 """, unsafe_allow_html=True)
 
@@ -138,6 +139,7 @@ function draw() {
 // Iniciar animación
 draw();
 """)
+<script>
 
                       
 #Sidebar
