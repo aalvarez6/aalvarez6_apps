@@ -30,7 +30,7 @@ st.title("Artificial Intelligence Applications.")
 st.write ("Explore AI tools powered by machine learning")
 
 # Logo
-with st.components.v1.html("""
+st.components.v1.html("""
 <style>
   #canvas-wrap { display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 0; }
   canvas { cursor:crosshair; border-radius:16px; }
@@ -119,7 +119,7 @@ ctx.arc(centerX, centerY + 55, 4, 0, Math.PI * 2);
 ctx.fillStyle = "#22d3ee";
 ctx.fill();
 </script>
-""")
+""", height=300)
 
 with st.sidebar:
   st.subheader("Artificial Intelligence.")
