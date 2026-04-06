@@ -10,28 +10,28 @@ APPS = [
     {
         "name": "Sol Energy Forecast",
         "desc": "Predicción de energía solar con LSTM en tiempo real.",
-        "img": "img_solar.png",            # archivo local o URL
+        "img": "Energy Forecast.webp",            # archivo local o URL
         "url": "https://solenergyforecast.streamlit.app/",
         "emoji": "⚡"
     },
     {
         "name": "BloomVision",
         "desc": "Clasifica flores usando tu modelo entrenado.",
-        "img": "img_flowers.jpg",
+        "img": "BloomVision.png",
         "url": "https://tlflores.streamlit.app/",
         "emoji": "🌸"
     },
     {
         "name": "Polyglot AI",
         "desc": "Traducción inteligente entre múltiples idiomas.",
-        "img": "img_translator.jpg",
+        "img": "PolyglotAI.jpg",
         "url": "https://traductore.streamlit.app/",
         "emoji": "🌐"
     },
     {
         "name": "VisionX",
         "desc": "Describe y entiende cualquier imagen con IA.",
-        "img": "img_vision.jpg",
+        "img": "VisionX.png",
         "url": "https://visionn.streamlit.app/",
         "emoji": "🏞️"
     },
