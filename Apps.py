@@ -40,9 +40,9 @@ st.components.v1.html("""
   padding:40px 20px;
 }
 
-/* Título estilo OpenClaw */
+/* título */
 .title {
-  font-size:60px;
+  font-size:56px;
   font-weight:800;
   margin:10px 0;
   background: linear-gradient(90deg, #c084fc, #7c3aed);
@@ -50,7 +50,7 @@ st.components.v1.html("""
   -webkit-text-fill-color: transparent;
 }
 
-/* Subtítulo */
+/* slogan */
 .tagline {
   color:#a1a1aa;
   font-size:14px;
@@ -58,7 +58,7 @@ st.components.v1.html("""
   margin-bottom:10px;
 }
 
-/* Descripción */
+/* descripción */
 .desc {
   color:#71717a;
   font-size:16px;
@@ -71,16 +71,16 @@ canvas {
 </style>
 
 <div class="hero">
-  <canvas id="c" width="220" height="120"></canvas>
+  <canvas id="c" width="180" height="180"></canvas>
 
   <div class="title">Artemis</div>
 
   <div class="tagline">
-    Open box with AI applications
+    SMARTER SYSTEMS. LESS EFFORT.
   </div>
 
   <div class="desc">
-    AI applications for automation, forecasting, and intelligent decision-making.
+    AI-powered applications for automation, forecasting and intelligent decision-making.
   </div>
 </div>
 
@@ -88,58 +88,81 @@ canvas {
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
 
-// Hormigas minimalistas (más estilo OpenClaw = simple)
-let gosh = [];
-for (let i = 0; i < 8; i++) {
-  gosh.push({
-    x: Math.random() * canvas.width,
-    y: 60 + Math.random()*20,
-    vx: (Math.random() - 0.5) * 1.2
-  });
-}
+const cx = canvas.width / 2;
+const cy = canvas.height / 2;
 
 let t = 0;
+let blink = 0;
 
-function drawAnt(a){
-  ctx.fillStyle = "#8b5cf6";
-
-  // cuerpo simple (3 nodos)
-  ctx.beginPath(); ctx.arc(a.x, a.y, 3, 0, Math.PI*2); ctx.fill();
-  ctx.beginPath(); ctx.arc(a.x-5, a.y, 2, 0, Math.PI*2); ctx.fill();
-  ctx.beginPath(); ctx.arc(a.x+5, a.y, 2, 0, Math.PI*2); ctx.fill();
-}
+// parpadeo cada cierto tiempo
+setInterval(() => {
+  blink = 1;
+  setTimeout(()=> blink = 0, 200);
+}, 3000);
 
 function draw(){
 
   ctx.clearRect(0,0,canvas.width,canvas.height);
 
-  // línea tipo “trayectoria / túnel”
-  ctx.beginPath();
-  ctx.moveTo(0,70);
+  const breathe = 1 + Math.sin(t) * 0.03;
+  const glow = 8 + Math.sin(t*2)*6;
 
-  for(let x=0;x<canvas.width;x+=10){
-    ctx.lineTo(x, 70 + Math.sin(x*0.05 + t)*4);
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.scale(breathe, breathe);
+
+  // 🐻 cabeza
+  ctx.beginPath();
+  ctx.arc(0,0,50,0,Math.PI*2);
+  ctx.fillStyle = "#7c3aed";
+  ctx.shadowColor = "#a78bfa";
+  ctx.shadowBlur = glow;
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  // orejas
+  ctx.beginPath(); ctx.arc(-30,-35,15,0,Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(30,-35,15,0,Math.PI*2); ctx.fill();
+
+  // cara (zona clara)
+  ctx.beginPath();
+  ctx.ellipse(0,10,30,25,0,0,Math.PI*2);
+  ctx.fillStyle = "#ede9fe";
+  ctx.fill();
+
+  // ojos
+  ctx.fillStyle = "#1e1b4b";
+
+  if(blink){
+    ctx.fillRect(-15,-5,10,2);
+    ctx.fillRect(5,-5,10,2);
+  } else {
+    ctx.beginPath(); ctx.arc(-10,-5,4,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(10,-5,4,0,Math.PI*2); ctx.fill();
   }
 
-  ctx.strokeStyle = "#27272a";
+  // nariz
+  ctx.beginPath();
+  ctx.arc(0,5,4,0,Math.PI*2);
+  ctx.fillStyle = "#5b21b6";
+  ctx.fill();
+
+  // sonrisa
+  ctx.beginPath();
+  ctx.arc(0,10,10,0,Math.PI);
+  ctx.strokeStyle = "#5b21b6";
   ctx.lineWidth = 2;
   ctx.stroke();
 
-  ants.forEach(a=>{
-    a.x += a.vx;
+  ctx.restore();
 
-    if(a.x < 0 || a.x > canvas.width) a.vx *= -1;
-
-    drawAnt(a);
-  });
-
-  t += 0.03;
+  t += 0.05;
   requestAnimationFrame(draw);
 }
 
 draw();
 </script>
-""", height=300)
+""", height=420)
 
 url_ia = "https://sites.google.com/view/aplicacionesdeia/inicio"
 st.write(f"Link to pages and exercises: [Link]({url_ia})")
