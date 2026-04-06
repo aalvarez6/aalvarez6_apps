@@ -24,7 +24,8 @@ st.markdown("""
     font-size: 0.82rem !important;
   }
 </style>
-""") , unsafe_allow_html=True)
+""")  
+unsafe_allow_html=True)
 
 st.title("Artificial Intelligence Applications.")
 st.subheader ("Explore AI tools powered by machine learning")
