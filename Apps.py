@@ -138,8 +138,9 @@ function draw() {
 
 // Iniciar animación
 draw();
-""")
 <script>
+""")
+
 
                       
 #Sidebar
