@@ -33,19 +33,21 @@ st.write ("Explore AI tools powered by machine learning")
 # Logo
 st.components.v1.html("""
 <style>
-  #canvas-wrap { display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 0; }
-  canvas { cursor:crosshair; border-radius:16px; }
-</style>
-<div id="canvas-wrap">
-  <canvas id="c" width="520" height="280"></canvas>
-</div>
+  #canvas-wrap {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:16px 0;
+  }
+  canvas {
+    border-radius:16px;
+  }
 </style>
 
 <div id="canvas-wrap">
   <canvas id="c" width="520" height="280"></canvas>
 </div>
 
-<script>
 <script>
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
@@ -54,10 +56,10 @@ const centerX = canvas.width / 2;
 const centerY = canvas.height / 2;
 const radius = 70;
 
-let t = 0; // tiempo para animación
+let t = 0;
 
 function draw() {
-  // Limpiar canvas
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // Fondo
@@ -67,41 +69,35 @@ function draw() {
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Animaciones
-  const floatY = Math.sin(t) * 6;              // flotación suave
-  const glow = 10 + Math.sin(t * 2) * 10;      // pulso de glow
+  const floatY = Math.sin(t) * 6;
+  const glow = 10 + Math.sin(t * 2) * 10;
 
-  // Cuerpo ghost
+  // Cuerpo
   ctx.beginPath();
   ctx.moveTo(centerX - radius, centerY + floatY);
   ctx.arc(centerX, centerY - 10 + floatY, radius, Math.PI, 0);
 
-  const waveWidth = radius * 2;
-  const waveHeight = 18;
-
   for (let i = 0; i <= 4; i++) {
-    let x = centerX + radius - (i * waveWidth / 4);
-    let y = centerY + radius + floatY - (i % 2 === 0 ? 0 : waveHeight);
+    let x = centerX + radius - (i * (radius*2) / 4);
+    let y = centerY + radius + floatY - (i % 2 === 0 ? 0 : 18);
     ctx.lineTo(x, y);
   }
 
   ctx.closePath();
 
-  // Gradiente cuerpo
   const bodyGradient = ctx.createLinearGradient(0, centerY - radius, 0, centerY + radius);
   bodyGradient.addColorStop(0, "#e2e8f0");
   bodyGradient.addColorStop(1, "#94a3b8");
 
   ctx.fillStyle = bodyGradient;
 
-  // Glow dinámico
   ctx.shadowColor = "#22d3ee";
   ctx.shadowBlur = glow;
 
   ctx.fill();
   ctx.shadowBlur = 0;
 
-  // Visor animado (ligero pulso)
+  // Visor
   ctx.beginPath();
   ctx.roundRect(centerX - 35, centerY - 10 + floatY, 70, 30, 10);
 
@@ -123,24 +119,20 @@ function draw() {
     ctx.stroke();
   }
 
-  // Nodo IA pulsante
+  // Nodo IA
   const pulse = 4 + Math.sin(t * 3) * 2;
   ctx.beginPath();
   ctx.arc(centerX, centerY + 55 + floatY, pulse, 0, Math.PI * 2);
   ctx.fillStyle = "#22d3ee";
   ctx.fill();
 
-  // Incrementar tiempo
   t += 0.05;
-
   requestAnimationFrame(draw);
 }
 
-// Iniciar animación
 draw();
-<script>
-""")
-
+</script>
+""", height=320)
 
                       
 #Sidebar
