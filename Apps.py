@@ -155,6 +155,7 @@ function draw() {
 
 draw();
 </script>
+""")
                       
 #Sidebar
 with st.sidebar:
