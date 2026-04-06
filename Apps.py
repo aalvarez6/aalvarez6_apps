@@ -1,35 +1,31 @@
 import streamlit as st
 from PIL import Image
 
-
 st.markdown("""
 <style>
-/* Fondo global */
+
+/* Fondo limpio tipo OpenClaw */
 .stApp {
-  background: radial-gradient(circle at 20% 20%, #1e1b4b, #020617 60%);
+  background: radial-gradient(circle at 50% 0%, #0f0f1a, #020617 60%);
   color: white;
-  overflow-x: hidden;
 }
 
-/* estrellas */
-.stApp::before {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background-image: radial-gradient(white 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.08;
-  animation: starsMove 60s linear infinite;
-  z-index: -1;
+/* Tipografía general */
+html, body, [class*="css"] {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-@keyframes starsMove {
-  from { transform: translate(0,0); }
-  to { transform: translate(100px, 200px); }
+/* Centrar contenido */
+.block-container {
+  max-width: 1100px;
+  padding-top: 2rem;
 }
+
+/* Quitar bordes visuales innecesarios */
+section[data-testid="stSidebar"] {
+  display: none;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -41,47 +37,50 @@ st.components.v1.html("""
   flex-direction:column;
   align-items:center;
   text-align:center;
-  padding:50px 20px;
+  padding:40px 20px;
 }
 
-h1 {
-  font-size:52px;
-  font-weight:900;
+/* Título estilo OpenClaw */
+.title {
+  font-size:56px;
+  font-weight:800;
   margin:10px 0;
   background: linear-gradient(90deg, #c084fc, #7c3aed);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+/* Subtítulo */
 .tagline {
-  color:#a78bfa;
+  color:#a1a1aa;
   font-size:14px;
-  letter-spacing:2px;
+  letter-spacing:1.5px;
+  margin-bottom:10px;
 }
 
+/* Descripción */
 .desc {
-  color:#94a3b8;
+  color:#71717a;
   font-size:16px;
-  max-width:600px;
+  max-width:520px;
 }
 
 canvas {
-  margin-bottom:20px;
+  margin-bottom:15px;
 }
 </style>
 
 <div class="hero">
-  <canvas id="c" width="320" height="160"></canvas>
+  <canvas id="c" width="220" height="120"></canvas>
 
-  <h1>AleAI</h1>
+  <div class="title">AleAI</div>
 
   <div class="tagline">
-    INTELLIGENCE THAT BUILDS.
+    BUILDING INTELLIGENCE SYSTEMS
   </div>
 
   <div class="desc">
-    Distributed AI systems inspired by nature — optimizing, learning, 
-    and building solutions collectively.
+    AI applications for automation, forecasting and intelligent decision-making.
   </div>
 </div>
 
@@ -89,83 +88,58 @@ canvas {
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
 
+// Hormigas minimalistas (más estilo OpenClaw = simple)
 let ants = [];
-const N = 12;
-
-// Crear hormigas
-for (let i = 0; i < N; i++) {
+for (let i = 0; i < 8; i++) {
   ants.push({
     x: Math.random() * canvas.width,
-    y: canvas.height/2 + Math.random()*40,
-    vx: (Math.random() - 0.5) * 1.5,
-    vy: (Math.random() - 0.5) * 1.5
+    y: 60 + Math.random()*20,
+    vx: (Math.random() - 0.5) * 1.2
   });
 }
 
 let t = 0;
 
-function drawAnt(a) {
-  ctx.save();
-  ctx.translate(a.x, a.y);
+function drawAnt(a){
+  ctx.fillStyle = "#8b5cf6";
 
-  // cuerpo (3 partes)
-  ctx.fillStyle = "#7c3aed";
-
-  ctx.beginPath(); ctx.arc(0,0,4,0,Math.PI*2); ctx.fill();
-  ctx.beginPath(); ctx.arc(-6,0,3,0,Math.PI*2); ctx.fill();
-  ctx.beginPath(); ctx.arc(6,0,3,0,Math.PI*2); ctx.fill();
-
-  // patas
-  ctx.strokeStyle = "#a78bfa";
-  ctx.lineWidth = 1;
-
-  for (let i=-1;i<=1;i++){
-    ctx.beginPath();
-    ctx.moveTo(0,0);
-    ctx.lineTo(8, i*4);
-    ctx.stroke();
-  }
-
-  ctx.restore();
+  // cuerpo simple (3 nodos)
+  ctx.beginPath(); ctx.arc(a.x, a.y, 3, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(a.x-5, a.y, 2, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(a.x+5, a.y, 2, 0, Math.PI*2); ctx.fill();
 }
 
-function drawTunnel() {
-  ctx.beginPath();
-  ctx.moveTo(0, canvas.height/2 + 30);
+function draw(){
 
-  for (let x = 0; x < canvas.width; x+=10){
-    let y = canvas.height/2 + 30 + Math.sin(x*0.05 + t)*5;
-    ctx.lineTo(x,y);
-  }
-
-  ctx.strokeStyle = "#312e81";
-  ctx.lineWidth = 3;
-  ctx.stroke();
-}
-
-function update() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
 
-  drawTunnel();
+  // línea tipo “trayectoria / túnel”
+  ctx.beginPath();
+  ctx.moveTo(0,70);
 
-  ants.forEach(a => {
+  for(let x=0;x<canvas.width;x+=10){
+    ctx.lineTo(x, 70 + Math.sin(x*0.05 + t)*4);
+  }
+
+  ctx.strokeStyle = "#27272a";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  ants.forEach(a=>{
     a.x += a.vx;
-    a.y += a.vy + Math.sin(t)*0.2;
 
-    // límites
-    if (a.x < 0 || a.x > canvas.width) a.vx *= -1;
-    if (a.y < canvas.height/2 || a.y > canvas.height) a.vy *= -1;
+    if(a.x < 0 || a.x > canvas.width) a.vx *= -1;
 
     drawAnt(a);
   });
 
   t += 0.03;
-  requestAnimationFrame(update);
+  requestAnimationFrame(draw);
 }
 
-update();
+draw();
 </script>
-""", height=420)
+""", height=300)
 
 url_ia = "https://sites.google.com/view/aplicacionesdeia/inicio"
 st.write(f"Link to pages and exercises: [Link]({url_ia})")
