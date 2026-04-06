@@ -4,85 +4,84 @@ from PIL import Image
 
 st.markdown("""
 <style>
-  [data-testid="column"] {
-    padding-left: 6px !important;
-    padding-right: 6px !important;
-  }
-  [data-testid="column"] .stImage {
-    margin-bottom: 4px !important;
-  }
-  [data-testid="column"] h3 {
-    margin-bottom: 4px !important;
-    margin-top: 16px !important;
-    font-size: 0.95rem !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  [data-testid="column"] p {
-    margin-bottom: 4px !important;
-    font-size: 0.82rem !important;
-  }
-  
+/* Fondo global */
+.stApp {
+  background: radial-gradient(circle at 20% 20%, #1e1b4b, #020617 60%);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* estrellas */
+.stApp::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.08;
+  animation: starsMove 60s linear infinite;
+  z-index: -1;
+}
+
+@keyframes starsMove {
+  from { transform: translate(0,0); }
+  to { transform: translate(100px, 200px); }
+}
 </style>
 """, unsafe_allow_html=True)
-
 
 # Logo
 st.components.v1.html("""
 <style>
-  .hero {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:40px 20px;
-    background: radial-gradient(circle at top, #1e1b4b, #020617);
-    border-radius:20px;
-  }
+.hero {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:50px 20px;
+}
 
-  h1 {
-    font-size:48px;
-    font-weight:800;
-    margin:10px 0;
-    background: linear-gradient(90deg, #c084fc, #7c3aed);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+h1 {
+  font-size:52px;
+  font-weight:900;
+  margin:10px 0;
+  background: linear-gradient(90deg, #c084fc, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-  .tagline {
-    color:#a78bfa;
-    font-size:14px;
-    letter-spacing:2px;
-    margin-bottom:12px;
-  }
+.tagline {
+  color:#a78bfa;
+  font-size:14px;
+  letter-spacing:2px;
+}
 
-  .desc {
-    color:#94a3b8;
-    font-size:16px;
-    max-width:600px;
-    line-height:1.5;
-  }
+.desc {
+  color:#94a3b8;
+  font-size:16px;
+  max-width:600px;
+}
 
-  canvas {
-    margin-bottom:10px;
-    transition: transform 0.2s ease;
-  }
+canvas {
+  margin-bottom:20px;
+}
 </style>
 
 <div class="hero">
-  <canvas id="c" width="160" height="160"></canvas>
+  <canvas id="c" width="320" height="160"></canvas>
 
-  <h1>ArtiBox</h1>
+  <h1>AleAI</h1>
 
   <div class="tagline">
-    THE AI THAT ACTUALLY DOES THINGS.
+    INTELLIGENCE THAT BUILDS.
   </div>
 
   <div class="desc">
-    AI-powered automation, energy optimization,  OCR, RAG's, and intelligent systems 
-    designed to solve real-world problems efficiently.
+    Distributed AI systems inspired by nature — optimizing, learning, 
+    and building solutions collectively.
   </div>
 </div>
 
@@ -90,114 +89,83 @@ st.components.v1.html("""
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
 
-const centerX = canvas.width / 2;
-const centerY = canvas.height / 2;
+let ants = [];
+const N = 12;
+
+// Crear hormigas
+for (let i = 0; i < N; i++) {
+  ants.push({
+    x: Math.random() * canvas.width,
+    y: canvas.height/2 + Math.random()*40,
+    vx: (Math.random() - 0.5) * 1.5,
+    vy: (Math.random() - 0.5) * 1.5
+  });
+}
 
 let t = 0;
-let mouseX = centerX;
-let mouseY = centerY;
-let hover = false;
 
-// Mouse interaction
-canvas.addEventListener("mousemove", (e) => {
-  const rect = canvas.getBoundingClientRect();
-  mouseX = e.clientX - rect.left;
-  mouseY = e.clientY - rect.top;
-});
+function drawAnt(a) {
+  ctx.save();
+  ctx.translate(a.x, a.y);
 
-canvas.addEventListener("mouseenter", () => hover = true);
-canvas.addEventListener("mouseleave", () => hover = false);
-
-function draw() {
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  const floatY = Math.sin(t) * 3;
-  const glow = hover ? 18 : 8 + Math.sin(t * 2) * 6;
-
-  const dx = (mouseX - centerX) * 0.05;
-  const dy = (mouseY - centerY) * 0.05;
-
-  // 🐜 BODY (3 segments)
-  ctx.shadowColor = "#a78bfa";
-  ctx.shadowBlur = glow;
-
-  // abdomen
-  ctx.beginPath();
-  ctx.arc(centerX, centerY + 20 + floatY, 18, 0, Math.PI * 2);
+  // cuerpo (3 partes)
   ctx.fillStyle = "#7c3aed";
-  ctx.fill();
 
-  // thorax
-  ctx.beginPath();
-  ctx.arc(centerX, centerY + floatY, 14, 0, Math.PI * 2);
-  ctx.fill();
+  ctx.beginPath(); ctx.arc(0,0,4,0,Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(-6,0,3,0,Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(6,0,3,0,Math.PI*2); ctx.fill();
 
-  // head
-  ctx.beginPath();
-  ctx.arc(centerX, centerY - 18 + floatY, 12, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.shadowBlur = 0;
-
-  // 🧠 visor (AI identity, follows mouse)
-  ctx.beginPath();
-  ctx.roundRect(
-    centerX - 10 + dx,
-    centerY - 22 + floatY + dy,
-    20,
-    10,
-    4
-  );
-  ctx.fillStyle = "#ede9fe";
-  ctx.fill();
-
-  // legs (animated)
+  // patas
   ctx.strokeStyle = "#a78bfa";
-  ctx.lineWidth = 2;
+  ctx.lineWidth = 1;
 
-  for (let i = -1; i <= 1; i++) {
+  for (let i=-1;i<=1;i++){
     ctx.beginPath();
-    ctx.moveTo(centerX + i*10, centerY + floatY);
-    ctx.lineTo(centerX + i*18, centerY + 10 + floatY + Math.sin(t+i)*4);
+    ctx.moveTo(0,0);
+    ctx.lineTo(8, i*4);
     ctx.stroke();
   }
 
-  // antennae
-  ctx.beginPath();
-  ctx.moveTo(centerX - 5, centerY - 28 + floatY);
-  ctx.lineTo(centerX - 12, centerY - 38 + floatY);
-  ctx.moveTo(centerX + 5, centerY - 28 + floatY);
-  ctx.lineTo(centerX + 12, centerY - 38 + floatY);
-  ctx.stroke();
-
-  // core pulse
-  const pulse = 3 + Math.sin(t * 3) * 1.5;
-  ctx.beginPath();
-  ctx.arc(centerX, centerY + 5 + floatY, pulse, 0, Math.PI * 2);
-  ctx.fillStyle = "#c084fc";
-  ctx.fill();
-
-  // hover scale
-  canvas.style.transform = hover ? "scale(1.08)" : "scale(1)";
-
-  t += 0.05;
-  requestAnimationFrame(draw);
+  ctx.restore();
 }
 
-draw();
+function drawTunnel() {
+  ctx.beginPath();
+  ctx.moveTo(0, canvas.height/2 + 30);
+
+  for (let x = 0; x < canvas.width; x+=10){
+    let y = canvas.height/2 + 30 + Math.sin(x*0.05 + t)*5;
+    ctx.lineTo(x,y);
+  }
+
+  ctx.strokeStyle = "#312e81";
+  ctx.lineWidth = 3;
+  ctx.stroke();
+}
+
+function update() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  drawTunnel();
+
+  ants.forEach(a => {
+    a.x += a.vx;
+    a.y += a.vy + Math.sin(t)*0.2;
+
+    // límites
+    if (a.x < 0 || a.x > canvas.width) a.vx *= -1;
+    if (a.y < canvas.height/2 || a.y > canvas.height) a.vy *= -1;
+
+    drawAnt(a);
+  });
+
+  t += 0.03;
+  requestAnimationFrame(update);
+}
+
+update();
 </script>
 """, height=420)
-                      
-#Sidebar
-with st.sidebar:
-  st.subheader("Artificial Intelligence.")
-  parrafo = (
-    "Artificial intelligence improves decision-making using data,"
-    "automates routine tasks, and provides advanced real-time analysis,"
-    "resulting in greater efficiency and precision across various fields."
-  )
-  st.write(parrafo)
 
 url_ia = "https://sites.google.com/view/aplicacionesdeia/inicio"
 st.write(f"Link to pages and exercises: [Link]({url_ia})")
