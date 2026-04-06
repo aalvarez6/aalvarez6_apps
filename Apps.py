@@ -1,18 +1,6 @@
 import streamlit as st
 from PIL import Image
 
-st.components.v1.html("""
-<style>
-  #canvas-wrap { display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 0; }
-  canvas { cursor:crosshair; border-radius:16px; }
-</style>
-<div id="canvas-wrap">
-  <canvas id="c" width="520" height="280"></canvas>
-</div>
-<script>
-  /* pega aquí todo el contenido del <script> del widget */
-</script>
-""", height=320)
 
 st.markdown("""
 <style>
@@ -39,6 +27,19 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("Artificial Intelligence Applications.")
+st.components.v1.html("""
+<style>
+  #canvas-wrap { display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 0; }
+  canvas { cursor:crosshair; border-radius:16px; }
+</style>
+<div id="canvas-wrap">
+  <canvas id="c" width="520" height="280"></canvas>
+</div>
+<script>
+  /* pega aquí todo el contenido del <script> del widget */
+</script>
+""", height=320)
+
 
 with st.sidebar:
   st.subheader("Artificial Intelligence.")
