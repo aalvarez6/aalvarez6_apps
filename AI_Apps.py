@@ -16,7 +16,7 @@ APPS = [
     },
     {
         "name": "BloomVision",
-        "desc": "Classify flowers using your trained model.                         ",
+        "desc": "Classify flowers using your trained model  ",
         "img": "img_flowers.jpg",
         "url": "https://tlflores.streamlit.app/",
         "emoji": "🌸"
@@ -44,7 +44,7 @@ APPS = [
     },
     {
         "name": "NeuroText",
-        "desc": "Generate coherent text with an LSTM network.",
+        "desc": "Generate coherent text with a Long Short Term Memory network. ",
         "img": "img_textgen.jpg",
         "url": "https://textgeneratoor.streamlit.app/",
         "emoji": "📝"
