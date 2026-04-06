@@ -119,7 +119,7 @@ ctx.arc(centerX, centerY + 55, 4, 0, Math.PI * 2);
 ctx.fillStyle = "#22d3ee";
 ctx.fill();
 </script>
-""", height:320)
+""", height:320
 
 with st.sidebar:
   st.subheader("Artificial Intelligence.")
