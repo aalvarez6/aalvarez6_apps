@@ -27,18 +27,88 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("Artificial Intelligence Applications.")
+st.subheader ("Explore AI tools powered by machine learning")
+
 st.components.v1.html("""
-<style>
-  #canvas-wrap { display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 0; }
-  canvas { cursor:crosshair; border-radius:16px; }
-</style>
-<div id="canvas-wrap">
-  <canvas id="c" width="520" height="280"></canvas>
-</div>
+
 <script>
-  /* pega aquí todo el contenido del <script> del widget */
+const canvas = document.getElementById("c");
+const ctx = canvas.getContext("2d");
+
+// Fondo
+const bg = ctx.createLinearGradient(0, 0, 0, canvas.height);
+bg.addColorStop(0, "#0f172a");
+bg.addColorStop(1, "#020617");
+ctx.fillStyle = bg;
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+// Parámetros del ghost-bot
+const centerX = canvas.width / 2;
+const centerY = canvas.height / 2;
+const radius = 70;
+
+// Cuerpo tipo fantasma (sin boca Pacman)
+ctx.beginPath();
+ctx.moveTo(centerX - radius, centerY);
+
+// Curva superior
+ctx.arc(centerX, centerY - 10, radius, Math.PI, 0);
+
+// Base ondulada tipo fantasma
+const waveWidth = radius * 2;
+const waveHeight = 18;
+const waves = 4;
+
+for (let i = 0; i <= waves; i++) {
+  let x = centerX + radius - (i * waveWidth / waves);
+  let y = centerY + radius - (i % 2 === 0 ? 0 : waveHeight);
+  ctx.lineTo(x, y);
+}
+
+ctx.closePath();
+
+// Gradiente metálico
+const bodyGradient = ctx.createLinearGradient(0, centerY - radius, 0, centerY + radius);
+bodyGradient.addColorStop(0, "#e2e8f0");
+bodyGradient.addColorStop(1, "#94a3b8");
+ctx.fillStyle = bodyGradient;
+ctx.fill();
+
+// Glow externo
+ctx.shadowColor = "#22d3ee";
+ctx.shadowBlur = 20;
+ctx.fill();
+ctx.shadowBlur = 0;
+
+// Visor (en lugar de ojos Pacman)
+ctx.beginPath();
+ctx.roundRect(centerX - 35, centerY - 10, 70, 30, 10);
+
+const visorGradient = ctx.createLinearGradient(centerX - 35, centerY, centerX + 35, centerY);
+visorGradient.addColorStop(0, "#0ea5e9");
+visorGradient.addColorStop(1, "#22d3ee");
+
+ctx.fillStyle = visorGradient;
+ctx.fill();
+
+// Detalles tipo circuitos
+ctx.strokeStyle = "#22d3ee";
+ctx.lineWidth = 2;
+
+for (let i = -2; i <= 2; i++) {
+  ctx.beginPath();
+  ctx.moveTo(centerX + i * 15, centerY + 30);
+  ctx.lineTo(centerX + i * 15, centerY + 50);
+  ctx.stroke();
+}
+
+// Punto central IA
+ctx.beginPath();
+ctx.arc(centerX, centerY + 55, 4, 0, Math.PI * 2);
+ctx.fillStyle = "#22d3ee";
+ctx.fill();
+
 </script>
-""", height=320)
 
 
 with st.sidebar:
