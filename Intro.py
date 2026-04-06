@@ -15,13 +15,13 @@ with st.sidebar:
 url_ia="https://sites.google.com/view/aplicacionesdeia/inicio"
 
 st.write(f"Enlace para páginas y ejercicios: [Enlace]({url_ia})")
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 
 with col1:
 
  st.subheader("Sol Energy Forecast")
  image = Image.open('Energy_forecast.png')
- st.image(image, width=190)
+ st.image(image, width=200)
  st.write("En el siguiente enlace usaremos una de las aplicaciones de Inteligencia Artificial. LSTM para predicciones de energía") 
  url = "https://solenergyforecast.streamlit.app/"
  st.write(f"Sol Energy Forecast: [Enlace]({url})")
@@ -161,7 +161,6 @@ with col4:
  st.write("En la siguiente enlace veremos la capacidad de interacción con el mundo físico (ChatGPT).") 
  url = "https://chatgptexploring.streamlit.app/"
  st.write(f"RAG: [Enlace]({url})")
-
 
  #3
  st.subheader("Sistema Ciberfísico")
