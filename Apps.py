@@ -163,7 +163,7 @@ st.markdown('<div class="subtitle">AI Applications Platform</div>', unsafe_allow
 
 # -------------------- DATA (NOMBRES MEJORADOS) --------------------
 apps = [
-    {"name":"SolarMind","desc":"AI solar forecasting","url":"https://solenergyforecast.streamlit.app/","img":"renewable-energy-forecast-solar-wind-infographic-1024x683.webp"},
+    {"name":"Energy Forecast","desc":"AI solar forecasting","url":"https://solenergyforecast.streamlit.app/","img":"renewable-energy-forecast-solar-wind-infographic-1024x683.webp"},
     {"name":"BloomVision","desc":"Flower classification AI","url":"https://tlflores.streamlit.app/","img":"photo_9_2026-03-17_16-25-34.jpg"},
     {"name":"Polyglot AI","desc":"Smart translation engine","url":"https://traductore.streamlit.app/","img":"OIG5.jpg"},
     {"name":"VisionX","desc":"AI image understanding","url":"https://visionn.streamlit.app/","img":"OIG5.jpg"},
