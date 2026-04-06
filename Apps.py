@@ -16,7 +16,7 @@ st.markdown("""
   }
   /* Divider between apps inside a column */
   [data-testid="column"] hr {
-    margin: 20px 0 !important;
+    margin: 10px 0 !important;
   }
 </style>
 """, unsafe_allow_html=True)
