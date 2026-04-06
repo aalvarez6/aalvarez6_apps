@@ -38,49 +38,49 @@ APPS = [
     {
         "name": "Wordcloud",
         "desc": "Visualiza palabras más frecuentes en textos.",
-        "img": "img_wordcloud.jpg",
+        "img": "Wordcloud.png",
         "url": "https://wordcloud-1.streamlit.app/",
         "emoji": "☁️"
     },
     {
         "name": "NeuroText",
         "desc": "Genera texto coherente con una red LSTM.",
-        "img": "img_textgen.jpg",
+        "img": "NeuroText.png",
         "url": "https://textgeneratoor.streamlit.app/",
         "emoji": "📝"
     },
     {
         "name": "YOGI",
         "desc": "Reconocimiento de imágenes con Teachable Machine.",
-        "img": "img_yogi.jpg",
+        "img": "YOGI.png",
         "url": "https://teachablem-yogi.streamlit.app/",
         "emoji": "🐶"
     },
     {
         "name": "Sentiment Analysis",
         "desc": "Detecta sentimiento positivo, negativo o neutral.",
-        "img": "img_sentiment.png",
+        "img": "Sentiment Analysis.png",
         "url": "https://sentimientos-1.streamlit.app/",
         "emoji": "❤️"
     },
     {
         "name": "Basic Neural Network",
         "desc": "Predicción de secuencias con RNN básica.",
-        "img": "img_rnn.jpg",
+        "img": "Basic Neuronal Network.png",
         "url": "https://rnnbasica.streamlit.app/",
         "emoji": "🧠"
     },
     {
         "name": "Voice OCR",
         "desc": "Extrae texto de imagen y lo convierte a audio.",
-        "img": "img_ocr_audio.jpg",
+        "img": "Voice OCR.png",
         "url": "https://ocr-audioo.streamlit.app/",
         "emoji": "🔡"
     },
     {
         "name": "Advanced OCR",
         "desc": "Reconocimiento óptico en documentos complejos.",
-        "img": "img_ocr_doc.png",
+        "img": "",
         "url": "https://opticalcr.streamlit.app/",
         "emoji": "📑"
     },
