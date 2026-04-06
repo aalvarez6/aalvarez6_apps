@@ -75,18 +75,18 @@ st.components.v1.html("""
 <div class="hero">
   <canvas id="c" width="140" height="140"></canvas>
 
-  <h1>YourAI</h1>
+  <h1>OpenS</h1>
 
   <div class="tagline">
     THE AI THAT ACTUALLY DOES THINGS.
   </div>
 
   <div class="desc">
-    Automatiza tareas, analiza datos y toma decisiones inteligentes 
-    desde una sola interfaz impulsada por inteligencia artificial.
+    Task Automatizations, Data Analysis, and Smart decision making.
   </div>
 </div>
 
+<script>
 <script>
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
@@ -103,21 +103,50 @@ function draw() {
   const floatY = Math.sin(t) * 4;
   const glow = 8 + Math.sin(t * 2) * 6;
 
-  // cuerpo
+  // 👻 Forma fantasma tipo Pacman
   ctx.beginPath();
-  ctx.arc(centerX, centerY + floatY, radius, 0, Math.PI * 2);
+  ctx.moveTo(centerX - radius, centerY + floatY);
 
-  ctx.fillStyle = "#7c3aed";
+  // cabeza redondeada
+  ctx.arc(centerX, centerY - 5 + floatY, radius, Math.PI, 0);
+
+  // base ondulada (estilo fantasma)
+  const waves = 4;
+  const waveHeight = 10;
+
+  for (let i = 0; i <= waves; i++) {
+    let x = centerX + radius - (i * (radius*2) / waves);
+    let y = centerY + radius + floatY - (i % 2 === 0 ? 0 : waveHeight);
+    ctx.lineTo(x, y);
+  }
+
+  ctx.closePath();
+
+  // 🎨 gradiente violeta
+  const grad = ctx.createLinearGradient(0, centerY - radius, 0, centerY + radius);
+  grad.addColorStop(0, "#c084fc");
+  grad.addColorStop(1, "#7c3aed");
+
+  ctx.fillStyle = grad;
+
+  // glow
   ctx.shadowColor = "#a78bfa";
   ctx.shadowBlur = glow;
 
   ctx.fill();
   ctx.shadowBlur = 0;
 
-  // visor
+  // 🟣 visor (robot AI)
   ctx.beginPath();
   ctx.roundRect(centerX - 15, centerY - 5 + floatY, 30, 15, 6);
-  ctx.fillStyle = "#c4b5fd";
+  ctx.fillStyle = "#ede9fe";
+  ctx.fill();
+
+  // ✨ núcleo IA (pulsante)
+  const pulse = 3 + Math.sin(t * 3) * 1.5;
+  ctx.beginPath();
+  ctx.arc(centerX, centerY + 20 + floatY, pulse, 0, Math.PI * 2);
+  ctx.fillStyle = "#c084fc";
   ctx.fill();
 
   t += 0.05;
@@ -126,7 +155,6 @@ function draw() {
 
 draw();
 </script>
-""", height=400)
                       
 #Sidebar
 with st.sidebar:
