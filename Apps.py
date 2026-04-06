@@ -109,7 +109,7 @@ ctx.fillStyle = "#22d3ee";
 ctx.fill();
 
 </script>
-
+"""
 
 with st.sidebar:
   st.subheader("Artificial Intelligence.")
