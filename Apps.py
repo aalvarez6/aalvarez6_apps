@@ -30,8 +30,8 @@ st.title("Artificial Intelligence Applications.")
 with st.sidebar:
   st.subheader("Artificial Intelligence.")
   parrafo = (
-    "Artificial intelligence improves decision-making using data, "
-    "automates routine tasks, and provides advanced real-time analysis, "
+    "Artificial intelligence improves decision-making using data,"
+    "automates routine tasks, and provides advanced real-time analysis,"
     "resulting in greater efficiency and precision across various fields."
   )
   st.write(parrafo)
@@ -43,7 +43,7 @@ col1, col2, col3, col4 = st.columns(4, gap="small")
 
 with col1:
 
-  st.subheader("⚡Energy Forecast ")
+  st.subheader("⚡Energy Forecast  ")
   image = Image.open('Energy_forecast.png')
   st.image(image, width=200)
   st.write("LSTM predictions for solar energy generation in real time.")
