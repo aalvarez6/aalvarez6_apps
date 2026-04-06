@@ -5,8 +5,8 @@ st.markdown("""
 <style>
   /* More space between columns */
   [data-testid="column"] {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
   }
   /* More vertical space between items inside each column */
   [data-testid="column"] .stImage,
