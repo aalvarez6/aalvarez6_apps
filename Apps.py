@@ -126,7 +126,7 @@ with col3:
   url = "https://opticalcr.streamlit.app/"
   st.write(f"Advanced OCR: [Link]({url})")
 
-  st.subheader("✍️ Handwritten Digits    ")
+  st.subheader("Handwritten Digits ✍️")
   image = Image.open('OIG4.jpg')
   st.image(image, width=200)
   st.write("Draw a digit and the neural network recognizes it instantly.")
@@ -164,14 +164,14 @@ with col4:
   url = "https://convoluciones.streamlit.app/"
   st.write(f"Convolutions: [Link]({url})")
 
-  st.subheader("🤖 Cyber-Physical (GPT)  ")
+  st.subheader("🤖 Cyber-Physical")
   image = Image.open('Chat_pdf.png')
   st.image(image, width=200)
   st.write("Interact with the physical world using ChatGPT as the AI engine.")
   url = "https://chatgptexploring.streamlit.app/"
   st.write(f"Cyber-Physical GPT: [Link]({url})")
 
-  st.subheader("🧬 Cyber-Physical (Claude)")
+  st.subheader("🧬 Cyber-Physical")
   image = Image.open('OIG6.jpg')
   st.image(image, width=200)
   st.write("Cyber-physical interaction powered by Anthropic's Claude model.")
