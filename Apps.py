@@ -5,14 +5,14 @@ st.markdown("""
 <style>
   /* More space between columns */
   [data-testid="column"] {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
   }
   /* More vertical space between items inside each column */
   [data-testid="column"] .stImage,
   [data-testid="column"] h3,
   [data-testid="column"] p {
-    margin-bottom: 8px !important;
+    margin-bottom: 10px !important;
   }
   /* Divider between apps inside a column */
   [data-testid="column"] hr {
