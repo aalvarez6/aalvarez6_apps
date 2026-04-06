@@ -44,7 +44,7 @@ st.markdown("""
 
 /* Texto */
 .card-title {
-  font-size:18px;
+  font-size:25px;
   font-weight:600;
 }
 
@@ -106,74 +106,139 @@ for(let i=0;i<120;i++){
   });
 }
 
-// planetas
-const earth = {x: 100, y: 140, r: 30};
-const moon = {x: canvas.width - 100, y: 70, r: 15};
-
-function drawStars(){
-  ctx.fillStyle="white";
-  stars.forEach(s=>{
-    ctx.globalAlpha = Math.random();
-    ctx.fillRect(s.x, s.y, s.r, s.r);
-  });
-  ctx.globalAlpha = 1;
+st.components.v1.html("""
+<style>
+.hero {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:40px 20px;
 }
 
-function drawPlanet(p,color){
-  ctx.beginPath();
-  ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-  ctx.fillStyle=color;
-  ctx.fill();
+/* título */
+.title {
+  font-size:56px;
+  font-weight:800;
+  margin:10px 0;
+  background: linear-gradient(90deg, #c084fc, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-function drawRocket(x,y){
+/* slogan */
+.tagline {
+  color:#a1a1aa;
+  font-size:14px;
+  letter-spacing:1.5px;
+  margin-bottom:10px;
+}
+
+/* descripción */
+.desc {
+  color:#71717a;
+  font-size:16px;
+  max-width:520px;
+}
+
+canvas {
+  margin-bottom:15px;
+}
+</style>
+
+<div class="hero">
+  <canvas id="c" width="180" height="180"></canvas>
+
+  <div class="title">Artemis</div>
+
+  <div class="tagline">
+    SMARTER SYSTEMS. LESS EFFORT.
+  </div>
+
+  <div class="desc">
+    AI-powered applications for automation, forecasting and intelligent decision-making.
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById("c");
+const ctx = canvas.getContext("2d");
+
+const cx = canvas.width / 2;
+const cy = canvas.height / 2;
+
+let t = 0;
+let blink = 0;
+
+// parpadeo cada cierto tiempo
+setInterval(() => {
+  blink = 1;
+  setTimeout(()=> blink = 0, 200);
+}, 3000);
+
+function draw(){
+
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  const breathe = 1 + Math.sin(t) * 0.03;
+  const glow = 8 + Math.sin(t*2)*6;
+
   ctx.save();
-  ctx.translate(x,y);
+  ctx.translate(cx, cy);
+  ctx.scale(breathe, breathe);
 
-  // cuerpo
-  ctx.fillStyle="#c084fc";
+  // 🐻 cabeza
   ctx.beginPath();
-  ctx.moveTo(0,-12);
-  ctx.lineTo(7,10);
-  ctx.lineTo(-7,10);
-  ctx.closePath();
+  ctx.arc(0,0,50,0,Math.PI*2);
+  ctx.fillStyle = "#7c3aed";
+  ctx.shadowColor = "#a78bfa";
+  ctx.shadowBlur = glow;
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  // orejas
+  ctx.beginPath(); ctx.arc(-30,-35,15,0,Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(30,-35,15,0,Math.PI*2); ctx.fill();
+
+  // cara (zona clara)
+  ctx.beginPath();
+  ctx.ellipse(0,10,30,25,0,0,Math.PI*2);
+  ctx.fillStyle = "#ede9fe";
   ctx.fill();
 
-  // fuego
+  // ojos
+  ctx.fillStyle = "#1e1b4b";
+
+  if(blink){
+    ctx.fillRect(-15,-5,10,2);
+    ctx.fillRect(5,-5,10,2);
+  } else {
+    ctx.beginPath(); ctx.arc(-10,-5,4,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(10,-5,4,0,Math.PI*2); ctx.fill();
+  }
+
+  // nariz
   ctx.beginPath();
-  ctx.moveTo(-4,10);
-  ctx.lineTo(4,10);
-  ctx.lineTo(0,18 + Math.sin(t*6)*4);
-  ctx.fillStyle="#f97316";
+  ctx.arc(0,5,4,0,Math.PI*2);
+  ctx.fillStyle = "#5b21b6";
   ctx.fill();
+
+  // sonrisa
+  ctx.beginPath();
+  ctx.arc(0,10,10,0,Math.PI);
+  ctx.strokeStyle = "#5b21b6";
+  ctx.lineWidth = 2;
+  ctx.stroke();
 
   ctx.restore();
+
+  t += 0.05;
+  requestAnimationFrame(draw);
 }
 
-function animate(){
-
-  ctx.fillStyle="#020617";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-
-  drawStars();
-
-  drawPlanet(earth,"#2563eb");
-  drawPlanet(moon,"#a1a1aa");
-
-  let progress = (Math.sin(t)+1)/2;
-
-  let x = earth.x + (moon.x-earth.x)*progress;
-  let y = earth.y - 90*Math.sin(progress*Math.PI);
-
-  drawRocket(x,y);
-
-  t += 0.02;
-  requestAnimationFrame(animate);
-}
-
-animate();
+draw();
 </script>
-""", height=220)
+""", height=420)
 
 # -------------------- HEADER --------------------
 st.markdown('<div class="title">Artemis Hub</div>', unsafe_allow_html=True)
