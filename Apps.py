@@ -6,10 +6,10 @@ st.set_page_config(layout="wide")
 # ==============================================================
 # IMAGES — place these files in the same folder as app.py
 # --------------------------------------------------------------
-# img_solar.png          → Sol Energy Forecast
-# img_flowers.jpg        → Flower Classifier
-# img_translator.jpg     → Translator
-# img_vision.jpg         → Image Analysis
+# Energy Forecast.webp   → Sol Energy Forecast
+# BloomVision.png        → Flower Classifier
+# Polygot.jpg            → Translator
+# VisionX.png         → Image Analysis
 # img_wordcloud.jpg      → Wordcloud
 # img_textgen.jpg        → LSTM Text Generator
 # img_yogi.jpg           → YOGI Image Recognition
