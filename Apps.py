@@ -69,48 +69,67 @@ st.components.v1.html("""
 
   canvas {
     margin-bottom:10px;
+    transition: transform 0.2s ease;
   }
 </style>
 
 <div class="hero">
-  <canvas id="c" width="140" height="140"></canvas>
+  <canvas id="c" width="160" height="160"></canvas>
 
-  <h1>OpenS</h1>
+  <h1>AleAI</h1>
 
   <div class="tagline">
     THE AI THAT ACTUALLY DOES THINGS.
   </div>
 
   <div class="desc">
-    Task Automatizations, Data Analysis, and Smart decision making.
+    Optimización energética, automatización y análisis inteligente 
+    con inteligencia artificial aplicada a sistemas reales.
   </div>
 </div>
 
-<script>
 <script>
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
 
 const centerX = canvas.width / 2;
 const centerY = canvas.height / 2;
-const radius = 40;
+const radius = 45;
 
 let t = 0;
+let mouseX = centerX;
+let mouseY = centerY;
+let hover = false;
+
+// Interacción mouse
+canvas.addEventListener("mousemove", (e) => {
+  const rect = canvas.getBoundingClientRect();
+  mouseX = e.clientX - rect.left;
+  mouseY = e.clientY - rect.top;
+});
+
+canvas.addEventListener("mouseenter", () => hover = true);
+canvas.addEventListener("mouseleave", () => hover = false);
 
 function draw() {
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   const floatY = Math.sin(t) * 4;
-  const glow = 8 + Math.sin(t * 2) * 6;
 
-  // 👻 Forma fantasma tipo Pacman
+  // Intensidad cambia con hover
+  const glow = hover ? 20 : 10 + Math.sin(t * 2) * 8;
+
+  // Dirección del visor (sigue el mouse)
+  const dx = (mouseX - centerX) * 0.05;
+  const dy = (mouseY - centerY) * 0.05;
+
+  // 👻 cuerpo fantasma
   ctx.beginPath();
   ctx.moveTo(centerX - radius, centerY + floatY);
 
-  // cabeza redondeada
   ctx.arc(centerX, centerY - 5 + floatY, radius, Math.PI, 0);
 
-  // base ondulada (estilo fantasma)
   const waves = 4;
   const waveHeight = 10;
 
@@ -122,32 +141,40 @@ function draw() {
 
   ctx.closePath();
 
-  // 🎨 gradiente violeta
+  // Gradiente violeta
   const grad = ctx.createLinearGradient(0, centerY - radius, 0, centerY + radius);
   grad.addColorStop(0, "#c084fc");
   grad.addColorStop(1, "#7c3aed");
 
   ctx.fillStyle = grad;
 
-  // glow
   ctx.shadowColor = "#a78bfa";
   ctx.shadowBlur = glow;
 
   ctx.fill();
   ctx.shadowBlur = 0;
 
-  // 🟣 visor (robot AI)
+  // 🧠 visor IA (sigue el mouse)
   ctx.beginPath();
-  ctx.roundRect(centerX - 15, centerY - 5 + floatY, 30, 15, 6);
+  ctx.roundRect(
+    centerX - 18 + dx,
+    centerY - 8 + floatY + dy,
+    36,
+    16,
+    6
+  );
   ctx.fillStyle = "#ede9fe";
   ctx.fill();
 
-  // ✨ núcleo IA (pulsante)
-  const pulse = 3 + Math.sin(t * 3) * 1.5;
+  // ✨ núcleo IA pulsante
+  const pulse = 4 + Math.sin(t * 3) * 2;
   ctx.beginPath();
-  ctx.arc(centerX, centerY + 20 + floatY, pulse, 0, Math.PI * 2);
+  ctx.arc(centerX, centerY + 25 + floatY, pulse, 0, Math.PI * 2);
   ctx.fillStyle = "#c084fc";
   ctx.fill();
+
+  // Hover scale efecto
+  canvas.style.transform = hover ? "scale(1.08)" : "scale(1)";
 
   t += 0.05;
   requestAnimationFrame(draw);
@@ -155,7 +182,7 @@ function draw() {
 
 draw();
 </script>
-""")
+""", height=420)
                       
 #Sidebar
 with st.sidebar:
