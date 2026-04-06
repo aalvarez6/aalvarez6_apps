@@ -113,7 +113,7 @@ st.components.v1.html("""
   flex-direction:column;
   align-items:center;
   text-align:center;
-  padding:40px 20px;
+  padding:20px 20px;
 }
 
 /* título */
