@@ -157,7 +157,7 @@ with col3:
 
 with col4:
 
-  st.subheader("🎛️ Convolutions")
+  st.subheader("🎛️ Convolutions ")
   image = Image.open('OIG6.jpg')
   st.image(image, width=200)
   st.write("Explore how convolutional filters transform images live.")
