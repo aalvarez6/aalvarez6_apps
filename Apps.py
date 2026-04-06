@@ -1,321 +1,141 @@
 import streamlit as st
 from PIL import Image
 
+st.set_page_config(layout="wide")
+
+# -------------------- STYLE --------------------
 st.markdown("""
 <style>
 
-/* Fondo limpio tipo OpenClaw */
+/* Fondo */
 .stApp {
   background: radial-gradient(circle at 50% 0%, #0f0f1a, #020617 60%);
   color: white;
 }
 
-/* Tipografía general */
-html, body, [class*="css"] {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
-/* Centrar contenido */
+/* Layout */
 .block-container {
-  max-width: 1100px;
+  max-width: 1200px;
   padding-top: 2rem;
 }
 
-/* Quitar bordes visuales innecesarios */
-section[data-testid="stSidebar"] {
-  display: none;
+/* Cards */
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 16px;
+  transition: 0.3s;
 }
 
-</style>
-""", unsafe_allow_html=True)
-
-# Logo
-st.components.v1.html("""
-<style>
-.hero {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  padding:40px 20px;
+.card:hover {
+  transform: translateY(-6px);
+  border: 1px solid #7c3aed;
+  box-shadow: 0 10px 30px rgba(124,58,237,0.3);
 }
 
-/* título */
+/* Titles */
+.card-title {
+  font-size:18px;
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+/* Description */
+.card-desc {
+  font-size:14px;
+  color:#a1a1aa;
+  margin-bottom:10px;
+}
+
+/* Button link */
+.card a {
+  color:#c084fc;
+  text-decoration:none;
+  font-size:14px;
+}
+
+/* Filters */
+.filter-bar {
+  margin:20px 0;
+}
+
+/* Header */
 .title {
   font-size:56px;
-  font-weight:800;
-  margin:10px 0;
+  font-weight:900;
+  text-align:center;
   background: linear-gradient(90deg, #c084fc, #7c3aed);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* slogan */
-.tagline {
+.subtitle {
+  text-align:center;
   color:#a1a1aa;
-  font-size:14px;
-  letter-spacing:1.5px;
-  margin-bottom:10px;
+  margin-bottom:20px;
 }
 
-/* descripción */
-.desc {
-  color:#71717a;
-  font-size:16px;
-  max-width:520px;
-}
-
-canvas {
-  margin-bottom:15px;
-}
 </style>
+""", unsafe_allow_html=True)
 
-<div class="hero">
-  <canvas id="c" width="180" height="180"></canvas>
+# -------------------- HEADER --------------------
+st.markdown('<div class="title">Artemis Hub</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">AI Applications Platform</div>', unsafe_allow_html=True)
 
-  <div class="title">Artemis</div>
+# -------------------- DATA --------------------
+apps = [
+    {"name":"Energy Forecast","desc":"LSTM solar predictions","url":"https://solenergyforecast.streamlit.app/","img":"renewable-energy-forecast-solar-wind-infographic-1024x683.webp","cat":"Forecasting"},
+    {"name":"Flower Classifier","desc":"Image classification model","url":"https://tlflores.streamlit.app/","img":"photo_9_2026-03-17_16-25-34.jpg","cat":"Vision"},
+    {"name":"Translator","desc":"Multi-language AI translator","url":"https://traductore.streamlit.app/","img":"OIG5.jpg","cat":"Language"},
+    {"name":"Image Analysis","desc":"Describe images with AI","url":"https://visionn.streamlit.app/","img":"OIG5.jpg","cat":"Vision"},
+    {"name":"Wordcloud","desc":"Text frequency visualization","url":"https://wordcloud-1.streamlit.app/","img":"OIG5.jpg","cat":"Data"},
+    {"name":"Text Generator","desc":"LSTM text generation","url":"https://textgeneratoor.streamlit.app/","img":"OIG5.jpg","cat":"Language"},
+    {"name":"Sentiment Analysis","desc":"Detect emotions in text","url":"https://sentimientos-1.streamlit.app/","img":"txt_to_audio.png","cat":"Language"},
+    {"name":"Neural Network","desc":"Time series prediction","url":"https://rnnbasica.streamlit.app/","img":"OIG8.jpg","cat":"Forecasting"},
+    {"name":"OCR to Audio","desc":"Extract text and convert to audio","url":"https://ocr-audioo.streamlit.app/","img":"OIG3.jpg","cat":"Vision"},
+    {"name":"Advanced OCR","desc":"Complex document recognition","url":"https://opticalcr.streamlit.app/","img":"Chat_pdf.png","cat":"Vision"},
+    {"name":"Text to Speech","desc":"Convert text into audio","url":"https://text-to-voic.streamlit.app/","img":"txt_to_audio2.png","cat":"Language"},
+    {"name":"Object Detection","desc":"YOLOv5 detection","url":"https://yolov55.streamlit.app/","img":"OIG4.jpg","cat":"Vision"},
+    {"name":"Data Analysis","desc":"AI data exploration","url":"https://dataagentt.streamlit.app/","img":"data_analisis.png","cat":"Data"},
+    {"name":"RAG with PDF","desc":"Ask questions to documents","url":"https://chatpdefe.streamlit.app/","img":"Chat_pdf.png","cat":"Data"},
+]
 
-  <div class="tagline">
-    SMARTER SYSTEMS. LESS EFFORT.
-  </div>
+# -------------------- FILTERS --------------------
+categories = ["All"] + sorted(list(set([a["cat"] for a in apps])))
 
-  <div class="desc">
-    AI-powered applications for automation, forecasting and intelligent decision-making.
-  </div>
-</div>
-
-<script>
-const canvas = document.getElementById("c");
-const ctx = canvas.getContext("2d");
-
-const cx = canvas.width / 2;
-const cy = canvas.height / 2;
-
-let t = 0;
-let blink = 0;
-
-// parpadeo cada cierto tiempo
-setInterval(() => {
-  blink = 1;
-  setTimeout(()=> blink = 0, 200);
-}, 3000);
-
-function draw(){
-
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  const breathe = 1 + Math.sin(t) * 0.03;
-  const glow = 8 + Math.sin(t*2)*6;
-
-  ctx.save();
-  ctx.translate(cx, cy);
-  ctx.scale(breathe, breathe);
-
-  // 🐻 cabeza
-  ctx.beginPath();
-  ctx.arc(0,0,50,0,Math.PI*2);
-  ctx.fillStyle = "#7c3aed";
-  ctx.shadowColor = "#a78bfa";
-  ctx.shadowBlur = glow;
-  ctx.fill();
-  ctx.shadowBlur = 0;
-
-  // orejas
-  ctx.beginPath(); ctx.arc(-30,-35,15,0,Math.PI*2); ctx.fill();
-  ctx.beginPath(); ctx.arc(30,-35,15,0,Math.PI*2); ctx.fill();
-
-  // cara (zona clara)
-  ctx.beginPath();
-  ctx.ellipse(0,10,30,25,0,0,Math.PI*2);
-  ctx.fillStyle = "#ede9fe";
-  ctx.fill();
-
-  // ojos
-  ctx.fillStyle = "#1e1b4b";
-
-  if(blink){
-    ctx.fillRect(-15,-5,10,2);
-    ctx.fillRect(5,-5,10,2);
-  } else {
-    ctx.beginPath(); ctx.arc(-10,-5,4,0,Math.PI*2); ctx.fill();
-    ctx.beginPath(); ctx.arc(10,-5,4,0,Math.PI*2); ctx.fill();
-  }
-
-  // nariz
-  ctx.beginPath();
-  ctx.arc(0,5,4,0,Math.PI*2);
-  ctx.fillStyle = "#5b21b6";
-  ctx.fill();
-
-  // sonrisa
-  ctx.beginPath();
-  ctx.arc(0,10,10,0,Math.PI);
-  ctx.strokeStyle = "#5b21b6";
-  ctx.lineWidth = 2;
-  ctx.stroke();
-
-  ctx.restore();
-
-  t += 0.05;
-  requestAnimationFrame(draw);
-}
-
-draw();
-</script>
-""", height=420)
-
-url_ia = "https://sites.google.com/view/aplicacionesdeia/inicio"
-st.write(f"Link to pages and exercises: [Link]({url_ia})")
-
-col1, col2, col3, col4 = st.columns(4, gap="small")
+col1, col2 = st.columns([2,1])
 
 with col1:
-
-  st.subheader(" Energy Forecast  ")
-  image = Image.open('renewable-energy-forecast-solar-wind-infographic-1024x683.webp')
-  st.image(image, width=200)
-  st.write("LSTM predictions for solar energy generation in real time.")
-  url = "https://solenergyforecast.streamlit.app/"
-  st.write(f"Sol Energy Forecast: [Link]({url})")
-
-  st.subheader("       Flower Classifier     ")
-  image = Image.open('photo_9_2026-03-17_16-25-34.jpg')
-  st.image(image, width=200)
-  st.write("Classify flower species using your own trained model.")
-  url = "https://tlflores.streamlit.app/"
-  st.write(f"Flower Classifier: [Link]({url})")
-
-  st.subheader(" Translator            ")
-  image = Image.open('OIG5.jpg')
-  st.image(image, width=200)
-  st.write("AI-powered translation app supporting multiple languages.")
-  url = "https://traductore.streamlit.app/"
-  st.write(f"Translator: [Link]({url})")
-
-  st.subheader(" Image Analysis        ")
-  image = Image.open('OIG5.jpg')
-  st.image(image, width=200)
-  st.write("Analyze and describe the content of any image with AI.")
-  url = "https://visionn.streamlit.app/"
-  st.write(f"Image Analysis: [Link]({url})")
-
-  st.subheader(" Wordcloud             ")
-  image = Image.open('OIG5.jpg')
-  st.image(image, width=200)
-  st.write("Visualize the most frequent words in any text with AI.")
-  url = "https://wordcloud-1.streamlit.app/"
-  st.write(f"Wordcloud: [Link]({url})")
-
+    search = st.text_input("🔍 Search apps")
 
 with col2:
+    selected_cat = st.selectbox("Category", categories)
 
-  st.subheader(" Text Generator   ")
-  image = Image.open('OIG5.jpg')
-  st.image(image, width=200)
-  st.write("Generate coherent text using an LSTM neural network model.")
-  url = "https://textgeneratoor.streamlit.app/"
-  st.write(f"LSTM Text Generator: [Link]({url})")
+# -------------------- FILTER LOGIC --------------------
+filtered_apps = []
+for app in apps:
+    if (selected_cat == "All" or app["cat"] == selected_cat):
+        if search.lower() in app["name"].lower():
+            filtered_apps.append(app)
 
-  st.subheader(" YOGI    ")
-  image = Image.open('OIG5.jpg')
-  st.image(image, width=200)
-  st.write("Use your Teachable Machine model for image recognition.")
-  url = "https://teachablem-yogi.streamlit.app/"
-  st.write(f"YOGI: [Link]({url})")
+# -------------------- GRID --------------------
+cols = st.columns(3)
 
-  st.subheader(" Sentiment Analysis    ")
-  image = Image.open('txt_to_audio.png')
-  st.image(image, width=200)
-  st.write("Detect positive, negative or neutral tone in any text.")
-  url = "https://sentimientos-1.streamlit.app/"
-  st.write(f"Sentiment Analysis: [Link]({url})")
-
-  st.subheader(" Neural Network  ")
-  image = Image.open('OIG8.jpg')
-  st.image(image, width=200)
-  st.write("RNN application for time series sequence prediction.")
-  url = "https://rnnbasica.streamlit.app/"
-  st.write(f"Basic Neural Network: [Link]({url})")
-
-  st.subheader(" OCR to Audio          ")
-  image = Image.open('OIG3.jpg')
-  st.image(image, width=200)
-  st.write("Extract text from images using OCR and convert to audio.")
-  url = "https://ocr-audioo.streamlit.app/"
-  st.write(f"OCR to Audio: [Link]({url})")
-
-
-with col3:
-
-  st.subheader(" Advanced OCR          ")
-  image = Image.open('Chat_pdf.png')
-  st.image(image, width=200)
-  st.write("Advanced optical character recognition on complex documents.")
-  url = "https://opticalcr.streamlit.app/"
-  st.write(f"Advanced OCR: [Link]({url})")
-
-  st.subheader("Handwritten Digits ")
-  image = Image.open('OIG4.jpg')
-  st.image(image, width=200)
-  st.write("Draw a digit and the neural network recognizes it instantly.")
-  url = "https://hzwi7bwfepy6scpu7pradh.streamlit.app/"
-  st.write(f"Handwritten Digits: [Link]({url})")
-
-  st.subheader(" Text to Speech        ")
-  image = Image.open('txt_to_audio2.png')
-  st.image(image, width=200)
-  st.write("Convert any text into natural speech audio with AI.")
-  url = "https://text-to-voic.streamlit.app/"
-  st.write(f"Text to Speech: [Link]({url})")
-
-  st.subheader(" Object Detection      ")
-  image = Image.open('OIG4.jpg')
-  st.image(image, width=200)
-  st.write("Detect and label objects in images using YOLOv5 in real time.")
-  url = "https://yolov55.streamlit.app/"
-  st.write(f"Object Detection: [Link]({url})")
-
-  st.subheader(" Data Analysis         ")
-  image = Image.open('data_analisis.png')
-  st.image(image, width=200)
-  st.write("AI agents explore, clean and visualize your data automatically.")
-  url = "https://dataagentt.streamlit.app/"
-  st.write(f"Data Analysis: [Link]({url})")
-
-
-with col4:
-
-  st.subheader(" Convolutions")
-  image = Image.open('OIG6.jpg')
-  st.image(image, width=200)
-  st.write("Explore how convolutional filters transform images live.")
-  url = "https://convoluciones.streamlit.app/"
-  st.write(f"Convolutions: [Link]({url})")
-
-  st.subheader(" Cyber-Physical")
-  image = Image.open('Chat_pdf.png')
-  st.image(image, width=200)
-  st.write("Interact with the physical world using ChatGPT as the AI engine.")
-  url = "https://chatgptexploring.streamlit.app/"
-  st.write(f"Cyber-Physical GPT: [Link]({url})")
-
-  st.subheader(" Cyber-Physical")
-  image = Image.open('OIG6.jpg')
-  st.image(image, width=200)
-  st.write("Cyber-physical interaction powered by Anthropic's Claude model.")
-  url = "https://chatbot-antropic.streamlit.app/"
-  st.write(f"Cyber-Physical Claude: [Link]({url})")
-
-  st.subheader(" RAG with PDF          ")
-  image = Image.open('Chat_pdf.png')
-  st.image(image, width=200)
-  st.write("Upload a PDF and ask questions using Retrieval-Augmented Generation.")
-  url = "https://chatpdefe.streamlit.app/"
-  st.write(f"RAG with PDF: [Link]({url})")
-
-  st.subheader(" Interactive Autoencoder")
-  image = Image.open('Chat_pdf.png')
-  st.image(image, width=200)
-  st.write("Explore and generate digits with an interactive Variational Autoencoder.")
-  url = "https://aevminists.streamlit.app/"
-  st.write(f"Autoencoder: [Link]({url})")
+for i, app in enumerate(filtered_apps):
+    col = cols[i % 3]
+    
+    with col:
+        try:
+            img = Image.open(app["img"])
+            st.image(img, use_column_width=True)
+        except:
+            pass
+        
+        st.markdown(f"""
+        <div class="card">
+            <div class="card-title">{app['name']}</div>
+            <div class="card-desc">{app['desc']}</div>
+            <a href="{app['url']}" target="_blank">Open App →</a>
+        </div>
+        """, unsafe_allow_html=True)
