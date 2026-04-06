@@ -29,12 +29,15 @@ st.markdown("""
 st.title("Artificial Intelligence Applications.")
 st.subheader ("Explore AI tools powered by machine learning")
 
-import streamlit as st
-
+# Logo
 st.components.v1.html("""
 <style>
   #canvas-wrap { display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 0; }
   canvas { cursor:crosshair; border-radius:16px; }
+</style>
+<div id="canvas-wrap">
+  <canvas id="c" width="520" height="280"></canvas>
+</div>
 </style>
 
 <div id="canvas-wrap">
