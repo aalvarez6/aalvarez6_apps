@@ -38,7 +38,7 @@ APPS = [
     {
         "name": "Wordcloud",
         "desc": "Visualiza palabras más frecuentes en textos.",
-        "img": "Wordcloud.png",
+        "img": "WordCloud.png",
         "url": "https://wordcloud-1.streamlit.app/",
         "emoji": "☁️"
     },
