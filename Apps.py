@@ -29,7 +29,17 @@ st.markdown("""
 st.title("Artificial Intelligence Applications.")
 st.subheader ("Explore AI tools powered by machine learning")
 
+import streamlit as st
+
 st.components.v1.html("""
+<style>
+  #canvas-wrap { display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 0; }
+  canvas { cursor:crosshair; border-radius:16px; }
+</style>
+
+<div id="canvas-wrap">
+  <canvas id="c" width="520" height="280"></canvas>
+</div>
 
 <script>
 const canvas = document.getElementById("c");
@@ -42,19 +52,17 @@ bg.addColorStop(1, "#020617");
 ctx.fillStyle = bg;
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-// Parámetros del ghost-bot
+// Parámetros
 const centerX = canvas.width / 2;
 const centerY = canvas.height / 2;
 const radius = 70;
 
-// Cuerpo tipo fantasma (sin boca Pacman)
+// Ghost shape
 ctx.beginPath();
 ctx.moveTo(centerX - radius, centerY);
-
-// Curva superior
 ctx.arc(centerX, centerY - 10, radius, Math.PI, 0);
 
-// Base ondulada tipo fantasma
+// Base ondulada
 const waveWidth = radius * 2;
 const waveHeight = 18;
 const waves = 4;
@@ -67,20 +75,20 @@ for (let i = 0; i <= waves; i++) {
 
 ctx.closePath();
 
-// Gradiente metálico
+// Gradiente cuerpo
 const bodyGradient = ctx.createLinearGradient(0, centerY - radius, 0, centerY + radius);
 bodyGradient.addColorStop(0, "#e2e8f0");
 bodyGradient.addColorStop(1, "#94a3b8");
 ctx.fillStyle = bodyGradient;
 ctx.fill();
 
-// Glow externo
+// Glow
 ctx.shadowColor = "#22d3ee";
 ctx.shadowBlur = 20;
 ctx.fill();
 ctx.shadowBlur = 0;
 
-// Visor (en lugar de ojos Pacman)
+// Visor
 ctx.beginPath();
 ctx.roundRect(centerX - 35, centerY - 10, 70, 30, 10);
 
@@ -91,7 +99,7 @@ visorGradient.addColorStop(1, "#22d3ee");
 ctx.fillStyle = visorGradient;
 ctx.fill();
 
-// Detalles tipo circuitos
+// Circuitos
 ctx.strokeStyle = "#22d3ee";
 ctx.lineWidth = 2;
 
@@ -102,15 +110,13 @@ for (let i = -2; i <= 2; i++) {
   ctx.stroke();
 }
 
-// Punto central IA
+// Nodo IA
 ctx.beginPath();
 ctx.arc(centerX, centerY + 55, 4, 0, Math.PI * 2);
 ctx.fillStyle = "#22d3ee";
 ctx.fill();
-
 </script>
-"""
-
+""", height=320)
 with st.sidebar:
   st.subheader("Artificial Intelligence.")
   parrafo = (
