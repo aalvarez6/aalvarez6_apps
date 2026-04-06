@@ -44,7 +44,7 @@ col1, col2, col3, col4 = st.columns(4, gap="small")
 with col1:
 
   st.subheader(" Energy Forecast  ")
-  image = Image.open('Energy_forecast.png')
+  image = Image.open('renewable-energy-forecast-solar-wind-infographic-1024x683.webp')
   st.image(image, width=200)
   st.write("LSTM predictions for solar energy generation in real time.")
   url = "https://solenergyforecast.streamlit.app/"
