@@ -45,81 +45,99 @@ st.components.v1.html("""
 </div>
 
 <script>
+<script>
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
 
-// Fondo
-const bg = ctx.createLinearGradient(0, 0, 0, canvas.height);
-bg.addColorStop(0, "#0f172a");
-bg.addColorStop(1, "#020617");
-ctx.fillStyle = bg;
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-// Parámetros
 const centerX = canvas.width / 2;
 const centerY = canvas.height / 2;
 const radius = 70;
 
-// Ghost shape
-ctx.beginPath();
-ctx.moveTo(centerX - radius, centerY);
-ctx.arc(centerX, centerY - 10, radius, Math.PI, 0);
+let t = 0; // tiempo para animación
 
-// Base ondulada
-const waveWidth = radius * 2;
-const waveHeight = 18;
-const waves = 4;
+function draw() {
+  // Limpiar canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-for (let i = 0; i <= waves; i++) {
-  let x = centerX + radius - (i * waveWidth / waves);
-  let y = centerY + radius - (i % 2 === 0 ? 0 : waveHeight);
-  ctx.lineTo(x, y);
-}
+  // Fondo
+  const bg = ctx.createLinearGradient(0, 0, 0, canvas.height);
+  bg.addColorStop(0, "#0f172a");
+  bg.addColorStop(1, "#020617");
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-ctx.closePath();
+  // Animaciones
+  const floatY = Math.sin(t) * 6;              // flotación suave
+  const glow = 10 + Math.sin(t * 2) * 10;      // pulso de glow
 
-// Gradiente cuerpo
-const bodyGradient = ctx.createLinearGradient(0, centerY - radius, 0, centerY + radius);
-bodyGradient.addColorStop(0, "#e2e8f0");
-bodyGradient.addColorStop(1, "#94a3b8");
-ctx.fillStyle = bodyGradient;
-ctx.fill();
-
-// Glow
-ctx.shadowColor = "#22d3ee";
-ctx.shadowBlur = 20;
-ctx.fill();
-ctx.shadowBlur = 0;
-
-// Visor
-ctx.beginPath();
-ctx.roundRect(centerX - 35, centerY - 10, 70, 30, 10);
-
-const visorGradient = ctx.createLinearGradient(centerX - 35, centerY, centerX + 35, centerY);
-visorGradient.addColorStop(0, "#0ea5e9");
-visorGradient.addColorStop(1, "#22d3ee");
-
-ctx.fillStyle = visorGradient;
-ctx.fill();
-
-// Circuitos
-ctx.strokeStyle = "#22d3ee";
-ctx.lineWidth = 2;
-
-for (let i = -2; i <= 2; i++) {
+  // Cuerpo ghost
   ctx.beginPath();
-  ctx.moveTo(centerX + i * 15, centerY + 30);
-  ctx.lineTo(centerX + i * 15, centerY + 50);
-  ctx.stroke();
+  ctx.moveTo(centerX - radius, centerY + floatY);
+  ctx.arc(centerX, centerY - 10 + floatY, radius, Math.PI, 0);
+
+  const waveWidth = radius * 2;
+  const waveHeight = 18;
+
+  for (let i = 0; i <= 4; i++) {
+    let x = centerX + radius - (i * waveWidth / 4);
+    let y = centerY + radius + floatY - (i % 2 === 0 ? 0 : waveHeight);
+    ctx.lineTo(x, y);
+  }
+
+  ctx.closePath();
+
+  // Gradiente cuerpo
+  const bodyGradient = ctx.createLinearGradient(0, centerY - radius, 0, centerY + radius);
+  bodyGradient.addColorStop(0, "#e2e8f0");
+  bodyGradient.addColorStop(1, "#94a3b8");
+
+  ctx.fillStyle = bodyGradient;
+
+  // Glow dinámico
+  ctx.shadowColor = "#22d3ee";
+  ctx.shadowBlur = glow;
+
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  // Visor animado (ligero pulso)
+  ctx.beginPath();
+  ctx.roundRect(centerX - 35, centerY - 10 + floatY, 70, 30, 10);
+
+  const visorGradient = ctx.createLinearGradient(centerX - 35, centerY, centerX + 35, centerY);
+  visorGradient.addColorStop(0, "#0ea5e9");
+  visorGradient.addColorStop(1, "#22d3ee");
+
+  ctx.fillStyle = visorGradient;
+  ctx.fill();
+
+  // Circuitos
+  ctx.strokeStyle = "#22d3ee";
+  ctx.lineWidth = 2;
+
+  for (let i = -2; i <= 2; i++) {
+    ctx.beginPath();
+    ctx.moveTo(centerX + i * 15, centerY + 30 + floatY);
+    ctx.lineTo(centerX + i * 15, centerY + 50 + floatY);
+    ctx.stroke();
+  }
+
+  // Nodo IA pulsante
+  const pulse = 4 + Math.sin(t * 3) * 2;
+  ctx.beginPath();
+  ctx.arc(centerX, centerY + 55 + floatY, pulse, 0, Math.PI * 2);
+  ctx.fillStyle = "#22d3ee";
+  ctx.fill();
+
+  // Incrementar tiempo
+  t += 0.05;
+
+  requestAnimationFrame(draw);
 }
 
-// Nodo IA
-ctx.beginPath();
-ctx.arc(centerX, centerY + 55, 4, 0, Math.PI * 2);
-ctx.fillStyle = "#22d3ee";
-ctx.fill();
+// Iniciar animación
+draw();
 </script>
-""", height=300)
 
 with st.sidebar:
   st.subheader("Artificial Intelligence.")
