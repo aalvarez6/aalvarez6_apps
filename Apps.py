@@ -33,19 +33,58 @@ st.write ("Explore AI tools powered by machine learning")
 # Logo
 st.components.v1.html("""
 <style>
-  #canvas-wrap {
+  .hero {
     display:flex;
-    justify-content:center;
+    flex-direction:column;
     align-items:center;
-    padding:16px 0;
+    justify-content:center;
+    text-align:center;
+    padding:40px 20px;
+    background: radial-gradient(circle at top, #1e1b4b, #020617);
+    border-radius:20px;
   }
+
+  h1 {
+    font-size:48px;
+    font-weight:800;
+    margin:10px 0;
+    background: linear-gradient(90deg, #c084fc, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .tagline {
+    color:#a78bfa;
+    font-size:14px;
+    letter-spacing:2px;
+    margin-bottom:12px;
+  }
+
+  .desc {
+    color:#94a3b8;
+    font-size:16px;
+    max-width:600px;
+    line-height:1.5;
+  }
+
   canvas {
-    border-radius:16px;
+    margin-bottom:10px;
   }
 </style>
 
-<div id="canvas-wrap">
-  <canvas id="c" width="520" height="280"></canvas>
+<div class="hero">
+  <canvas id="c" width="140" height="140"></canvas>
+
+  <h1>YourAI</h1>
+
+  <div class="tagline">
+    THE AI THAT ACTUALLY DOES THINGS.
+  </div>
+
+  <div class="desc">
+    Automatiza tareas, analiza datos y toma decisiones inteligentes 
+    desde una sola interfaz impulsada por inteligencia artificial.
+  </div>
 </div>
 
 <script>
@@ -54,76 +93,31 @@ const ctx = canvas.getContext("2d");
 
 const centerX = canvas.width / 2;
 const centerY = canvas.height / 2;
-const radius = 70;
+const radius = 40;
 
 let t = 0;
 
 function draw() {
-
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Fondo
-  const bg = ctx.createLinearGradient(0, 0, 0, canvas.height);
-  bg.addColorStop(0, "#0f172a");
-  bg.addColorStop(1, "#020617");
-  ctx.fillStyle = bg;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  const floatY = Math.sin(t) * 4;
+  const glow = 8 + Math.sin(t * 2) * 6;
 
-  const floatY = Math.sin(t) * 6;
-  const glow = 10 + Math.sin(t * 2) * 10;
-
-  // Cuerpo
+  // cuerpo
   ctx.beginPath();
-  ctx.moveTo(centerX - radius, centerY + floatY);
-  ctx.arc(centerX, centerY - 10 + floatY, radius, Math.PI, 0);
+  ctx.arc(centerX, centerY + floatY, radius, 0, Math.PI * 2);
 
-  for (let i = 0; i <= 4; i++) {
-    let x = centerX + radius - (i * (radius*2) / 4);
-    let y = centerY + radius + floatY - (i % 2 === 0 ? 0 : 18);
-    ctx.lineTo(x, y);
-  }
-
-  ctx.closePath();
-
-  const bodyGradient = ctx.createLinearGradient(0, centerY - radius, 0, centerY + radius);
-  bodyGradient.addColorStop(0, "#e2e8f0");
-  bodyGradient.addColorStop(1, "#94a3b8");
-
-  ctx.fillStyle = bodyGradient;
-
-  ctx.shadowColor = "#22d3ee";
+  ctx.fillStyle = "#7c3aed";
+  ctx.shadowColor = "#a78bfa";
   ctx.shadowBlur = glow;
 
   ctx.fill();
   ctx.shadowBlur = 0;
 
-  // Visor
+  // visor
   ctx.beginPath();
-  ctx.roundRect(centerX - 35, centerY - 10 + floatY, 70, 30, 10);
-
-  const visorGradient = ctx.createLinearGradient(centerX - 35, centerY, centerX + 35, centerY);
-  visorGradient.addColorStop(0, "#0ea5e9");
-  visorGradient.addColorStop(1, "#22d3ee");
-
-  ctx.fillStyle = visorGradient;
-  ctx.fill();
-
-  // Circuitos
-  ctx.strokeStyle = "#22d3ee";
-  ctx.lineWidth = 2;
-
-  for (let i = -2; i <= 2; i++) {
-    ctx.beginPath();
-    ctx.moveTo(centerX + i * 15, centerY + 30 + floatY);
-    ctx.lineTo(centerX + i * 15, centerY + 50 + floatY);
-    ctx.stroke();
-  }
-
-  // Nodo IA
-  const pulse = 4 + Math.sin(t * 3) * 2;
-  ctx.beginPath();
-  ctx.arc(centerX, centerY + 55 + floatY, pulse, 0, Math.PI * 2);
-  ctx.fillStyle = "#22d3ee";
+  ctx.roundRect(centerX - 15, centerY - 5 + floatY, 30, 15, 6);
+  ctx.fillStyle = "#c4b5fd";
   ctx.fill();
 
   t += 0.05;
@@ -132,8 +126,7 @@ function draw() {
 
 draw();
 </script>
-""", height=320)
-
+""", height=400)
                       
 #Sidebar
 with st.sidebar:
