@@ -23,7 +23,7 @@ APPS = [
     },
     {
          "name": "Wordcloud",
-        "desc": "Visualize most frequent words in any text.",
+        "desc": "Visualize the cloud of the most frequent words in any text.",
         "img": "WordCloud.png",
         "url": "https://wordcloud-1.streamlit.app/",
         "emoji": "☁️"     
