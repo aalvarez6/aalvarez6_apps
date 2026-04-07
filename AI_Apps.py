@@ -108,7 +108,7 @@ APPS = [
     {
         "name": "Data Analysis",
         "desc": "AI agents explore, clean and chart your data.",
-        "img": "Cyber-Physical.png",
+        "img": "AI agent.png",
         "url": "https://dataagentt.streamlit.app/",
         "emoji": "📊"
     },
