@@ -51,10 +51,10 @@ APPS = [
     },
     {
         "name": "YOGI",
-        "desc": "Image recognition using your Teachable Machine model.",
+        "desc": "Image recognition powered by your Teachable Machine model, enabling intelligent, real-time classification.",
         "img": "YOGI.png",
         "url": "https://teachablem-yogi.streamlit.app/",
-        "emoji": "🐶"
+        "emoji": "🧘‍♀️"
     },
     {
         "name": "Sentiment Analysis",
