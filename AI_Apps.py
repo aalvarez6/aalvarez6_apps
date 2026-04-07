@@ -24,7 +24,7 @@ APPS = [
     {
         "name": "Polyglot AI",
         "desc": "Smart AI translation across multiple languages.",
-        "img": "img_translator.jpg",
+        "img": "PolyglotAI.png",
         "url": "https://traductore.streamlit.app/",
         "emoji": "🌐"
     },
@@ -80,70 +80,70 @@ APPS = [
     {
         "name": "Advanced OCR",
         "desc": "Optical character recognition on complex documents.",
-        "img": "img_ocr_doc.png",
+        "img": "Advanced OCR.png",
         "url": "https://opticalcr.streamlit.app/",
         "emoji": "📑"
     },
     {
         "name": "Handwritten Digits",
         "desc": "Draw a digit — the neural network reads it instantly.",
-        "img": "img_digits.jpg",
+        "img": "handwritten Digits.png",
         "url": "https://hzwi7bwfepy6scpu7pradh.streamlit.app/",
         "emoji": "✍️"
     },
     {
         "name": "Text to Speech",
         "desc": "Convert any text into natural AI‑generated speech.",
-        "img": "img_tts.png",
+        "img": "Text to Speech.png",
         "url": "https://text-to-voic.streamlit.app/",
         "emoji": "🔊"
     },
     {
         "name": "Object Detection",
         "desc": "Detect and label objects in images with YOLOv5.",
-        "img": "img_yolo.jpg",
+        "img": "YOLOv5.png",
         "url": "https://yolov55.streamlit.app/",
         "emoji": "🔍"
     },
     {
         "name": "Data Analysis",
         "desc": "AI agents explore, clean and chart your data.",
-        "img": "img_data.png",
+        "img": "Cyber-Physical.png",
         "url": "https://dataagentt.streamlit.app/",
         "emoji": "📊"
     },
     {
         "name": "Convolutions",
         "desc": "See how convolutional filters transform images live.",
-        "img": "img_conv.jpg",
+        "img": "Convolutions.png",
         "url": "https://convoluciones.streamlit.app/",
         "emoji": "🎛️"
     },
     {
         "name": "Cyber-Physical GPT",
         "desc": "Interact with the physical world via ChatGPT.",
-        "img": "img_cybergpt.png",
+        "img": "Cyber-Physical.png",
         "url": "https://chatgptexploring.streamlit.app/",
         "emoji": "🤖"
     },
     {
         "name": "Cyber-Physical Claude",
         "desc": "Cyber‑physical interaction powered by Claude AI.",
-        "img": "img_cyberclaude.jpg",
+        "img": "Cyber-Physical.png",
         "url": "https://chatbot-antropic.streamlit.app/",
         "emoji": "🧬"
     },
     {
         "name": "RAG with PDF",
         "desc": "Upload a PDF and ask questions — RAG powered.",
-        "img": "img_rag.png",
+        "img": "RAG with PDF.png",
         "url": "https://chatpdefe.streamlit.app/",
         "emoji": "📚"
     },
     {
         "name": "Interactive Autoencoder",
         "desc": "Explore and generate digits with a VAE model.",
-        "img": "img_vae.png",
+        "img": "Autoencoder VAE.png",
         "url": "https://aevminists.streamlit.app/",
         "emoji": "🎲"
     }
