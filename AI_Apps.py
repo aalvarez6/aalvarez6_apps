@@ -23,7 +23,7 @@ APPS = [
     },
     {
         "name": "Polyglot AI",
-        "desc": "Smart AI translation across multiple languages using Artificial Intelligent.",
+        "desc": "Smart AI translation across multiple languages.                                                   ",
         "img": "PolyglotAI.png",
         "url": "https://traductore.streamlit.app/",
         "emoji": "🌐"
@@ -44,7 +44,7 @@ APPS = [
     },
     {
         "name": "NeuroText",
-        "desc": "Generate coherent text with a Long Short Term Memory network. ",
+        "desc": "Generate coherent text with a LSTM ",
         "img": "NeuroText.png",
         "url": "https://textgeneratoor.streamlit.app/",
         "emoji": "📝"
