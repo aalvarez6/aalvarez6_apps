@@ -23,7 +23,7 @@ APPS = [
     },
     {
         "name": "Polyglot AI",
-        "desc": "Smart AI translation across multiple languages.",
+        "desc": "Smart AI translation across multiple languages using Artificial Intelligent.",
         "img": "PolyglotAI.png",
         "url": "https://traductore.streamlit.app/",
         "emoji": "🌐"
