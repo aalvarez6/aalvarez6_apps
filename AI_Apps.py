@@ -22,11 +22,11 @@ APPS = [
         "emoji": "🌸"
     },
     {
-        "name": " Polyglot AI ",
-        "desc": " Smart Artificial Intelligence translation across multiple languages. Accurate, and context-aware communication. ",
-        "img": "PolyglotAI.png",
-        "url": "https://traductore.streamlit.app/",
-        "emoji": "🌐"
+         "name": "Wordcloud",
+        "desc": "Visualize most frequent words in any text.",
+        "img": "WordCloud.png",
+        "url": "https://wordcloud-1.streamlit.app/",
+        "emoji": "☁️"     
     },
     {
         "name": "VisionX",
@@ -36,11 +36,11 @@ APPS = [
         "emoji": "🏞️"
     },
     {
-        "name": "Wordcloud",
-        "desc": "Visualize most frequent words in any text.",
-        "img": "WordCloud.png",
-        "url": "https://wordcloud-1.streamlit.app/",
-        "emoji": "☁️"
+        "name": " Polyglot AI ",
+        "desc": " Smart Artificial Intelligence translation across multiple languages. Accurate, and context-aware communication. ",
+        "img": "PolyglotAI.png",
+        "url": "https://traductore.streamlit.app/",
+        "emoji": "🌐"
     },
     {
         "name": "NeuroText",
