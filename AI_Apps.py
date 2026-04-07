@@ -37,7 +37,7 @@ APPS = [
     },
     {
         "name": " Polyglot AI ",
-        "desc": " Smart Artificial Intelligence translation across multiple languages. Accurate, and context-aware communication. ",
+        "desc": " Smart Artificial Intelligence translation across multiple languages.",
         "img": "PolyglotAI.png",
         "url": "https://traductore.streamlit.app/",
         "emoji": "🌐"
@@ -51,7 +51,7 @@ APPS = [
     },
     {
         "name": "YOGI",
-        "desc": "Image recognition powered by your Teachable Machine model, enabling intelligent, real-time classification.",
+        "desc": "Image recognition powered by your Teachable Machine model.",
         "img": "YOGI.png",
         "url": "https://teachablem-yogi.streamlit.app/",
         "emoji": "🧘‍♀️"
