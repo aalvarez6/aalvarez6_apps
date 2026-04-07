@@ -44,7 +44,7 @@ APPS = [
     },
     {
         "name": "NeuroText",
-        "desc": "Generate coherent text with a LSTM ",
+        "desc": "Generate coherent text with a Long Short Term Memory ",
         "img": "Neurotext.png",
         "url": "https://textgeneratoor.streamlit.app/",
         "emoji": "📝"
