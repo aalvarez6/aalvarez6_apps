@@ -23,7 +23,7 @@ APPS = [
     },
     {
         "name": " Polyglot AI ",
-        "desc": "Smart Artificial Intelligence translation across multiple languages .",
+        "desc": " “Smart Artificial Intelligence translation across multiple languages, designed to deliver fast, accurate, and context-aware communication. ",
         "img": "PolyglotAI.png",
         "url": "https://traductore.streamlit.app/",
         "emoji": "🌐"
@@ -120,14 +120,14 @@ APPS = [
         "emoji": "🎛️"
     },
     {
-        "name": "Cyber-Physical GPT",
+        "name": "Cyber - GPT",
         "desc": "Interact with the physical world via ChatGPT.",
         "img": "Cyber-Physical.png",
         "url": "https://chatgptexploring.streamlit.app/",
         "emoji": "🤖"
     },
     {
-        "name": "Cyber-Physical Claude",
+        "name": "Cyber - Claude",
         "desc": "Cyber‑physical interaction powered by Claude AI.",
         "img": "Cyber-Physical.png",
         "url": "https://chatbot-antropic.streamlit.app/",
