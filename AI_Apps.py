@@ -10,14 +10,14 @@ APPS = [
     {
         "name": "Sol Energy Forecast",
         "desc": "Real‑time solar energy prediction with LSTM.",
-        "img": "img_solar.png",
+        "img": "Energy Forecast.webp",
         "url": "https://solenergyforecast.streamlit.app/",
         "emoji": "⚡"
     },
     {
         "name": "BloomVision",
         "desc": "Classify flowers using your trained model  ",
-        "img": "img_flowers.jpg",
+        "img": "BloomVision.png",
         "url": "https://tlflores.streamlit.app/",
         "emoji": "🌸"
     },
@@ -31,49 +31,49 @@ APPS = [
     {
         "name": "VisionX",
         "desc": "Understand and describe any image with AI vision.",
-        "img": "img_vision.jpg",
+        "img": "VisionX.png",
         "url": "https://visionn.streamlit.app/",
         "emoji": "🏞️"
     },
     {
         "name": "Wordcloud",
         "desc": "Visualize most frequent words in any text.",
-        "img": "img_wordcloud.jpg",
+        "img": "WordCloud.png",
         "url": "https://wordcloud-1.streamlit.app/",
         "emoji": "☁️"
     },
     {
         "name": "NeuroText",
         "desc": "Generate coherent text with a Long Short Term Memory network. ",
-        "img": "img_textgen.jpg",
+        "img": "NeuroText.png",
         "url": "https://textgeneratoor.streamlit.app/",
         "emoji": "📝"
     },
     {
         "name": "YOGI",
         "desc": "Image recognition using your Teachable Machine model.",
-        "img": "img_yogi.jpg",
+        "img": "YOGI.png",
         "url": "https://teachablem-yogi.streamlit.app/",
         "emoji": "🐶"
     },
     {
         "name": "Sentiment Analysis",
         "desc": "Detect positive, negative or neutral tone in text.",
-        "img": "img_sentiment.png",
+        "img": "Sentiment Analysis.png",
         "url": "https://sentimientos-1.streamlit.app/",
         "emoji": "❤️"
     },
     {
         "name": "Basic Neural Network",
         "desc": "Time series sequence prediction with a basic RNN.",
-        "img": "img_rnn.jpg",
+        "img": "Basic Neuronal Network.png",
         "url": "https://rnnbasica.streamlit.app/",
         "emoji": "🧠"
     },
     {
         "name": "Voice OCR",
         "desc": "Extract text from images via OCR and convert to audio.",
-        "img": "img_ocr_audio.jpg",
+        "img": "Voice OCR.png",
         "url": "https://ocr-audioo.streamlit.app/",
         "emoji": "🔡"
     },
