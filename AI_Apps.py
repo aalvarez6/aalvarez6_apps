@@ -22,9 +22,8 @@ APPS = [
         "emoji": "🌸"
     },
     {
-        "name": "Polyglot AI",
-        "desc": "Smart AI translation across multiple languages.   
-                         Avaliable for Androip and IOS.",
+        "name": " Polyglot AI ",
+        "desc": "Smart Artificial Intelligence translation across multiple languages .",
         "img": "PolyglotAI.png",
         "url": "https://traductore.streamlit.app/",
         "emoji": "🌐"
@@ -65,7 +64,7 @@ APPS = [
         "emoji": "❤️"
     },
     {
-        "name": "Basic Neural Network",
+        "name": "Basic RNN",
         "desc": "Time series sequence prediction with a basic RNN.",
         "img": "Basic Neuronal Network.png",
         "url": "https://rnnbasica.streamlit.app/",
