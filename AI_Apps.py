@@ -141,7 +141,7 @@ APPS = [
         "emoji": "📚"
     },
     {
-        "name": "Interactive Autoencoder",
+        "name": "Autoencoder",
         "desc": "Explore and generate digits with a VAE model.",
         "img": "Autoencoder VAE.png",
         "url": "https://aevminists.streamlit.app/",
